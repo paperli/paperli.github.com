@@ -1,1 +1,78 @@
-My GitHub Page
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="image/psign.gif" type="image/gif" sizes="16x16" rel="icon">
+<title>PaPer's Site</title>
+<script src="src/jquery-1.4.4.min.js" type="text/javascript"></script>
+<style>
+body{
+	height:100%;
+	margin:0;
+	padding:0;
+}
+
+div#floater{
+	float:left;
+	height:50%;
+	width:1px;
+	margin:0 auto -100px;
+}
+
+a#main{
+	clear:both;
+	margin:0 auto;
+	position:relative;
+	display:block;
+	width:400px;
+	height:200px;
+	border:none;
+	text-decoration:none;
+	cursor:pointer;
+	-webkit-transition:all 500ms;
+	-moz-transition:all 500ms;
+	-o-transition:all 500ms;
+	transition:all 500ms;
+}
+
+#logo1{
+	background:url(image/logo.png) center center no-repeat;
+	width:100%;
+	height:100%;
+}
+
+#logo2{
+	background:url(image/logo_highlighted.png) center center no-repeat;
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	display:none;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	logo1_fade();
+	$("a#main").hover(function(){
+		$("#logo1").stop(false,false).hide();
+		$("#logo2").show();
+	},function(){
+		$("#logo2").hide();
+		$("#logo1").show();
+		logo1_fade();
+	});
+});
+
+function logo1_fade(){
+	$("#logo1").delay(500).fadeTo(2000,0.6,function(){
+		$(this).delay(200).fadeTo(1000,1,logo1_fade);
+	});
+}
+</script>
+</head>
+
+<body>
+	<div id="floater"></div>
+	<a id="main" href="portfolio/"><div id="logo1"></div><div id="logo2"></div></a>
+<img src="image/logo_highlighted.png" style="display:none" />
+</body>
+</html>

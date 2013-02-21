@@ -1,0 +1,105 @@
+@charset "utf-8";
+/* CSS Document */
+.slidebox{
+	position:relative;
+}
+
+.slides{
+	position:relative;
+	display:block;
+	overflow:hidden;
+	width:600px;
+	height:auto;
+}
+
+.slide{
+	position:absolute;
+	border:none;
+	height:auto;
+	width:auto;
+}
+
+.slide>div{
+	margin:20px;
+}
+
+.slide p{
+	font-weight:lighter;
+	line-height:150%;
+}
+
+.slide h3{
+	font-size:45px;
+}
+
+.dot{
+	padding:12px 0 0 0;
+	position:absolute;
+}
+
+.dot a{
+	display:block;
+	border:none;
+	background:url(images/indicator_normal2.png) no-repeat;
+	width:13px;
+	height:16px;
+	font-size:10px;
+	padding:4px 0 0 7px;
+	text-decoration:none;
+	color:#fff;
+}
+
+.dot a:hover{
+	background:url(images/indicator_over2.png);
+}
+
+.dot a:active{
+	background:url(images/indicator_active2.png);
+}
+
+.arrow_previous{
+	float:left;
+	padding:8px 0 0 0;
+}
+
+.arrow_previous a{
+	display:block;
+	border:none;
+	background:url(images/arrow_previous_normal2.png) no-repeat;
+	width:30px;
+	height:30px;
+}
+
+.arrow_previous a:hover{
+	background:url(images/arrow_previous_active2.png) no-repeat;
+}
+
+.arrow_next{
+	float:right;
+	padding:8px 0 0 0;
+}
+
+.arrow_next a{
+	display:block;
+	border:none;
+	background:url(images/arrow_next_normal2.png) no-repeat;
+	width:30px;
+	height:30px;
+}
+
+.arrow_next a:hover{
+	background:url(images/arrow_next_active2.png) no-repeat;
+}
+
+.indicator{
+	position:absolute;
+	bottom:0px;
+	width:912px;
+	height:46px;
+	display:block;
+	background:url(images/indicator_bg.png) repeat;
+}
+
+.nextprev{
+	display:none;
+}

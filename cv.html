@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>PaPers TIMELINE</title>
+<link rel="shortcut icon" href="https://lh3.googleusercontent.com/-FidufjOqED0/T1BTGrzc6JI/AAAAAAAAKZ0/AhlxxJPql9c/s800/psign.gif">
+<script src="src/jquery-1.4.4.min.js"></script>
+<script>
+var actived;
+//var activing = -1;
+var canvas;
+var context;
+var cpt;
+
+var mousePos;
+var drawInterval;
+
+function init_draw(){
+	context.beginPath();
+	context.moveTo(canvas.width,0);
+	context.quadraticCurveTo(cpt.x,cpt.y,canvas.width,canvas.height);
+	context.lineTo(0,canvas.height);
+	context.lineTo(0,0);
+	context.closePath();
+	context.fillStyle = "#000";
+	context.fill();
+}
+
+$(function(){
+	
+	canvas = document.getElementById("banner");
+	if (!($.browser.msie && parseInt($.browser.version,10)<9)){
+	
+	context = canvas.getContext("2d");
+	cpt = {x:canvas.width,y:canvas.height/2};
+	
+	canvas.height = $(window).height();
+	context.beginPath();
+	context.moveTo(canvas.width,0);
+	context.quadraticCurveTo(cpt.x,cpt.y,canvas.width,canvas.height);
+	context.lineTo(0,canvas.height);
+	context.lineTo(0,0);
+	context.closePath();
+	context.fillStyle = "#000";
+	context.fill();
+	
+	$("a#banner_toWORK").hover(curving,flatting);
+	
+	drawnInterval = setInterval(init_draw,1);
+	} else {
+		canvas.style.display = "none";
+		$("a#banner_toWORK").css("backgroundColor","#000");
+		$("a#close_banner").click(function(){
+			$(this).hide(100);
+			$("div#html5_banner").hide(100);
+		});
+	}
+	$(window).resize(function(){
+		canvas.height = $(window).height();
+	});
+	
+	
+	
+	$("body").hide().fadeIn(1000);
+	$("a#link_toWORK").click(function(event){
+    	event.preventDefault();
+    	linkLocation = this.href;
+    	$("body").fadeOut(500, function() {
+        	window.location = linkLocation;
+    	});
+	});
+	/*$("div#timeline a").hover(function(){
+		$("div#"+$(this).attr("id")+"_detail").slideDown(300);
+	},function(){
+		$("div#"+$(this).attr("id")+"_detail").delay(100).slideUp(300);
+	});*/
+	$("div#timeline a").mouseover(function(){
+		if ($(this).attr("id")=="wh"){
+			if (actived != "intern"){
+				if (actived){
+					$("div#"+actived+"_detail").fadeOut(300);
+				}
+				$("div#pf_intern_detail").fadeIn(300);
+				actived = "intern";
+			}
+		} else {
+			if (actived != $(this).attr("id")){
+				if (actived){
+					$("div#"+actived+"_detail").fadeOut(300);
+				}
+				$("div#"+$(this).attr("id")+"_detail").fadeIn(300);
+				actived = $(this).attr("id");
+			}
+		}
+	});
+	
+	$('#main').click(function(){
+		if (actived){
+			$("div#"+actived+"_detail").fadeOut(300);
+			actived = null;
+		}
+	});
+	
+	$("a#ctci_text").hover(function(e) {
+        $("div#ctci_detail").fadeToggle(300);
+    });
+	
+	$("a#diwo_text").hover(function(e) {
+        $("div#diwo_detail").fadeToggle(300);
+    });
+	
+	//alert(($(window).height()-$("#description").offset().top)+"::"+$("#pf_intern_detail").height());
+	var std_height = $(window).height()-$("#description").offset().top;
+	if ($("#pf_intern_detail").height() > std_height){
+		//alert($(window).height());
+		std_height = $("#pf_intern_detail").height();
+	}
+	setDetailHeight(std_height);
+	//alert($("#description").offset().top);
+	//alert(parseInt($('#born_detail').css('padding-top'),10));
+	
+	$('#main').height($(window).height());
+	
+	if ($.browser.webkit){
+		$("#monochrome").hover(startMask,stopMask);
+		$("#monochrome").mousemove(placeMask);
+	}
+});
+
+function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect(), root = document.documentElement;
+
+        // return relative mouse position
+        var mouseX = evt.clientX - rect.left - root.scrollLeft;
+        var mouseY = evt.clientY - rect.top - root.scrollTop;
+        return {
+          x: mouseX,
+          y: mouseY
+        };
+      }
+
+
+function curving(evt){
+	clearInterval(drawInterval);
+	mousePos = getMousePos(canvas,evt);
+	cpt.x += (mousePos.x-cpt.x)*0.05;
+	cpt.y += (mousePos.y-cpt.y)*0.05;
+	
+	canvas.width = canvas.width;
+	context.beginPath();
+	context.moveTo(canvas.width,0);
+	context.quadraticCurveTo(cpt.x,cpt.y,canvas.width,canvas.height);
+	context.lineTo(0,canvas.height);
+	context.lineTo(0,0);
+	context.closePath();
+	context.fillStyle = "#000";
+	context.fill();
+	
+	drawInterval = setInterval(drawCurve,10);
+	document.getElementById("banner_toWORK").addEventListener("mousemove",update);
+}
+
+function drawCurve(){
+	canvas.width = canvas.width;
+	cpt.x += (mousePos.x-cpt.x)*0.05;
+	cpt.y += (mousePos.y-cpt.y)*0.05;
+	
+	canvas.width = canvas.width;
+	context.beginPath();
+	context.moveTo(canvas.width,0);
+	context.quadraticCurveTo(cpt.x,cpt.y,canvas.width,canvas.height);
+	context.lineTo(0,canvas.height);
+	context.lineTo(0,0);
+	context.closePath();
+	context.fillStyle = "#000";
+	context.fill();
+}
+
+function drawFlat(){
+	cpt.x += (canvas.width-cpt.x)*0.01;
+	cpt.y += (canvas.height/2-cpt.y)*0.01;
+	
+	canvas.width = canvas.width;
+	context.beginPath();
+	context.moveTo(canvas.width,0);
+	context.quadraticCurveTo(cpt.x,cpt.y,canvas.width,canvas.height);
+	context.lineTo(0,canvas.height);
+	context.lineTo(0,0);
+	context.closePath();
+	context.fillStyle = "#000";
+	context.fill();
+}
+
+function update(evt){
+	mousePos = getMousePos(canvas,evt);
+}
+
+function flatting(evt){
+	clearInterval(drawInterval);
+	document.getElementById("banner_toWORK").removeEventListener("mousemove",update);
+	//mousePos = getMousePos(canvas,evt);
+	cpt.x += (canvas.width-cpt.x)*0.05;
+	cpt.y += (canvas.height/2-cpt.y)*0.05;
+	
+	canvas.width = canvas.width;
+	context.beginPath();
+	context.moveTo(canvas.width,0);
+	context.quadraticCurveTo(cpt.x,cpt.y,canvas.width,canvas.height);
+	context.lineTo(0,canvas.height);
+	context.lineTo(0,0);
+	context.closePath();
+	context.fillStyle = "#000";
+	context.fill();
+	
+	drawInterval = setInterval(drawFlat,10);
+	//document.getElementById("banner_toWORK").addEventListener("mousemove",update);
+	
+}
+
+function startMask(event){
+	//alert($(this).css("-webkit-mask-size"));
+	$("#footer").fadeOut();
+	//$("#footer").fadeTo(300,0.8);
+	$(this).css("backgroundImage","url(portfolio/images/me-2_colour.png)");
+	$(this).css("webkitMaskPosition",(event.pageX-$(this).offset().left-parseInt($(this).css("-webkit-mask-size"),10)/2)+"px "+(event.pageY-$(this).offset().top-parseInt($(this).css("-webkit-mask-size"),10)/2)+"px");
+}
+
+function placeMask(){
+	$(this).css("webkitMaskPosition",(event.pageX-$(this).offset().left-parseInt($(this).css("-webkit-mask-size"),10)/2)+"px "+(event.pageY-$(this).offset().top-parseInt($(this).css("-webkit-mask-size"),10)/2)+"px");
+}
+
+function stopMask(){
+	$("#footer").fadeIn();
+	//$("#footer").fadeTo(300,1);
+	$(this).css("backgroundImage","none");
+}
+
+var time_flags = ["born","bs","ms","army","ctci","katdc","diwo","pf_intern","pf"];
+
+var setDetailHeight = function(h){
+	for (var i = 0; i< time_flags.length;i++){
+		$("#"+time_flags[i]+"_detail").height(h-parseInt($("#"+time_flags[i]+"_detail").css('padding-top'),10)-parseInt($("#"+time_flags[i]+"_detail").css('padding-bottom'),10));
+	}
+}
+</script>
+<style>
+body{
+	margin:0;
+	padding:0;
+	font-family:Verdana, Geneva, sans-serif;
+}
+
+#main{
+	width:803px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+	
+}
+
+#timeline{
+	top:110px;
+	width:100%;
+	height:auto;
+	position:absolute;
+}
+
+.clip h3, .float_t h3{
+	font-size:14px;
+	font-weight:bold;
+	margin:0;
+	padding-bottom:7px;
+}
+
+.float_t h3{
+	padding-bottom:0;
+}
+
+.clip h4, .float_t h4{
+	font-size:14px;
+	font-weight:bold;
+	margin:0;
+}
+
+.clip p, .float_t p{
+	font-size:14px;
+	margin:0;
+}
+
+a.clip{
+	float:left;
+}
+
+a#born {
+	text-decoration:none;
+	border:none;
+	display:block;
+	width:78px;
+	height:103px;
+	background:#00983a;
+	color:#fff;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	padding-top:56px;
+	padding-left:25px;
+	opacity:0.8;
+}
+
+a#born:hover{
+	opacity:1;
+}
+
+a#bs {
+	text-decoration:none;
+	border:none;
+	display:block;
+	width:115px;
+	height:107px;
+	background:#ea5b0c;
+	color:#fff;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	padding-top:52px;
+	padding-left:17px;
+	opacity:0.8;
+}
+
+a#bs:hover{
+	opacity:1;
+}
+
+a#ms {
+	text-decoration:none;
+	border:none;
+	display:block;
+	width:88px;
+	height:107px;
+	background:#e30613;
+	color:#fff;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	padding-top:52px;
+	padding-left:10px;
+	opacity:0.8;
+}
+
+a#ms:hover{
+	opacity:1;
+}
+
+a#army {
+	text-decoration:none;
+	border:none;
+	display:block;
+	width:52px;
+	height:159px;
+	background:#00983a url(image/army.png) center center no-repeat;
+	color:#fff;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	opacity:0.8;
+}
+
+a#army:hover{
+	opacity:1;
+}
+
+a#ctci {
+	text-decoration:none;
+	border:none;
+	display:block;
+	width:41px;
+	height:159px;
+	background:#273488;
+	color:#fff;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	opacity:0.8;
+}
+
+a#ctci:hover{
+	opacity:1;
+}
+
+a#katdc {
+	text-decoration:none;
+	border:none;
+	display:block;
+	width:120px;
+	height:118px;
+	background:#82368c;
+	color:#fff;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	padding-top:41px;
+	padding-left:11px;
+	opacity:0.8;
+}
+
+a#katdc:hover{
+	opacity:1;
+}
+
+a#pf_intern{
+	text-decoration:none;
+	border:none;
+	display:block;
+	width:101px;
+	height:118px;
+	background:#00983a;
+	color:#fff;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	padding-top:41px;
+	padding-left:11px;
+	opacity:0.8;
+}
+
+a#pf_intern:hover{
+	opacity:1;
+}
+
+a#pf {
+	text-decoration:none;
+	border:none;
+	display:block;
+	width:121px;
+	height:118px;
+	background:#ea5b0c;
+	color:#fff;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	padding-top:41px;
+	padding-left:11px;
+	opacity:0.8;
+}
+
+a#pf:hover{
+	opacity:1;
+}
+
+a#wh {
+	position:absolute;
+	left:557px;
+	top:14px;
+	text-decoration:none;
+	border:none;
+	display:block;
+	width:108px;
+	height:13px;
+	background:url(image/de_flag.png) no-repeat left top;
+	color:#e3e3e3;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	font-size:9px;
+	padding-top:1px;
+	padding-left:4px;
+}
+
+a#wh:hover{
+	color:#FFFFFF;
+}
+
+a#diwo {
+	position:absolute;
+	left:508px;
+	top:14px;
+	text-decoration:none;
+	border:none;
+	display:block;
+	width:18px;
+	height:13px;
+	background:#ea5b0c;
+	color:#e3e3e3;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+}
+
+a#diwo:hover{
+	
+}
+
+a#ctci_text{
+	text-align:right;
+	color:#27348b;
+	position:absolute;
+	text-decoration:none;
+	border:none;
+	left:223px;
+	top:40px;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+}
+
+a#ctci_text:hover{
+	color:#4251b7;
+	text-shadow:0px 0px 5px #999;
+}
+
+a#diwo_text{
+	color:#ea5b0c;
+	position:absolute;
+	text-decoration:none;
+	border:none;
+	left:508px;
+	top:40px;
+	transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+}
+
+a#diwo_text:hover{
+	color:#ff762b;
+	text-shadow:0px 0px 5px #999;
+}
+
+#ctci_text div.strike{
+	width:2px;
+	height:20px;
+	margin-top:2px;
+	background:#27348b;
+	position:absolute;
+	right:10px;
+}
+
+#diwo_text div.strike{
+	width:2px;
+	height:20px;
+	margin-top:2px;
+	background:#ea5b0c;
+	margin-left:10px;
+}
+
+#ctci_text div.strike2{
+	width:2px;
+	height:18px;
+	background:#fff;
+	position:absolute;
+	margin-top:19px;
+	right:10px;
+}
+
+#diwo_text div.strike2{
+	width:2px;
+	height:18px;
+	margin-top:-3px;
+	background:#fff;
+	margin-left:10px;
+}
+
+.time_clip{
+	height:75px;
+	float:left;
+}
+
+#times{
+	top:276px;
+	position:absolute;
+	width:100%;
+	z-index:10;
+}
+
+#born_time{
+	width:103px;
+	height:100%;
+}
+
+#bs_time{
+	width:132px;
+	height:100%;
+}
+
+#ms_time{
+	width:98px;
+	height:100%;
+}
+
+#army_time{
+	width:52px;
+	height:100%;
+}
+
+#ctci_time{
+	width:41px;
+	height:100%;
+}
+
+#ctci_time div.mar{
+	padding-top:5px;
+	padding-bottom:4px;
+	background:url(image/von.png) no-repeat top left;
+	font-size:12px;
+	width:100%;
+}
+
+#ctci_time div.aug{
+	padding-bottom:5px;
+	margin-bottom:5px;
+	background:url(image/bis.png) no-repeat bottom right;
+	font-size:12px;
+	width:100%;
+	text-align:right;
+}
+
+#katdc_time{
+	padding-left:5px;
+	width:126px;
+	height:100%;
+}
+
+#pf_intern_time{
+	width:111px;
+	height:100%;
+}
+
+#pf_time{
+	width:131px;
+	height:100%;
+}
+
+.detail{
+	color:#fff;
+	display:none;
+	height:auto;
+}
+
+.detail h3{
+	font-size:18px;
+	font-weight:bold;
+	margin:0;
+}
+
+.detail h4{
+	font-size:18px;
+	font-weight:normal;
+	margin:0;
+}
+
+.detail p {
+	font-size:14px;
+	margin:20px 0;
+	padding:0;
+}
+
+#wh_flag{
+	background:url(image/de_flag_big.jpg) no-repeat;
+	width:458px;
+	height:53px;
+	
+	margin-bottom:34px;
+}
+
+div#description{
+	width:100%;
+	height:auto;
+	position:absolute;
+	top:334px;
+	z-index:1;
+}
+
+#pf_intern_detail{
+	width:726px;
+	padding:78px 37px;
+	background:#00983a;
+}
+
+#pf_intern_detail div.handler{
+	width:82px;
+	height:40px;
+	background:url(image/detail_handler.png) #00983a no-repeat center center;
+	position:absolute;
+	left:579px;
+}
+
+#katdc_detail{
+	width:726px;
+	padding:78px 37px;
+	background:#82368c;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#katdc_detail div.handler{
+	width:82px;
+	height:40px;
+	background:url(image/detail_handler.png) #82368c no-repeat center center;
+	position:absolute;
+	left:453px;
+}
+
+#ctci_detail{
+	width:726px;
+	padding:78px 37px;
+	background:#273488;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#ctci_detail div.handler{
+	width:82px;
+	height:40px;
+	background:url(image/detail_handler.png) #273488 no-repeat center center;
+	position:absolute;
+	left:370px;
+}
+
+#diwo_detail{
+	width:726px;
+	padding:78px 37px;
+	background:#ea5b0c;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#diwo_detail div.handler{
+	width:82px;
+	height:40px;
+	background:url(image/detail_handler.png) #ea5b0c no-repeat center center;
+	position:absolute;
+	left:476px;
+}
+
+#army_detail{
+	width:726px;
+	padding:78px 37px;
+	background:#00983a;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:100;
+}
+
+#army_detail div.handler{
+	width:82px;
+	height:40px;
+	background:url(image/detail_handler.png) #00983a no-repeat center center;
+	position:absolute;
+	left:318px;
+}
+
+#ms_detail{
+	width:726px;
+	padding:78px 37px;
+	background:#e30613;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#ms_detail div.handler{
+	width:82px;
+	height:40px;
+	background:url(image/detail_handler.png) #e30613 no-repeat center center;
+	position:absolute;
+	left:244px;
+}
+
+#bs_detail{
+	width:726px;
+	padding:78px 37px;
+	background:#ea5b0c;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#bs_detail div.handler{
+	width:82px;
+	height:40px;
+	background:url(image/detail_handler.png) #ea5b0c no-repeat center center;
+	position:absolute;
+	left:129px;
+}
+
+#born_detail{
+	width:726px;
+	padding:78px 37px;
+	background:#009b3a;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#born_detail div.handler{
+	width:82px;
+	height:40px;
+	background:url(image/detail_handler.png) #009b3a no-repeat center center;
+	position:absolute;
+	left:11px;
+}
+
+#pf_detail{
+	width:726px;
+	padding:78px 37px;
+	background:#ea5b0c;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#pf_detail div.handler{
+	width:82px;
+	height:40px;
+	background:url(image/detail_handler.png) #ea5b0c no-repeat center center;
+	position:absolute;
+	left:695px;
+}
+
+div.detail_header{
+	width:100%;
+	height:40px;
+	background:#FFF;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+a#link_toWORK{
+	display:block;
+	width:70px;
+	height:70px;
+	background:#000;
+	text-decoration:none;
+	border:none;
+	position:absolute;
+	left:0;
+	top:200px;
+	transition:all 0.3s;
+	-moz-transition:all 0.3s;
+	-webkit-transition:all 0.3s;
+	-o-transition:all 0.3s;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:16px;
+	color:#ccc;
+}
+
+a#link_toWORK:hover{
+	-webkit-box-shadow:inset 0px 0px 5px 5px rgba(200, 200, 200, 0.2);
+	-moz-box-shadow:inset 0px 0px 5px 5px rgba(200, 200, 200, 0.2);
+	box-shadow:inset 0px 0px 5px 5px rgba(200, 200, 200, 0.2);
+	color:#fff;
+}
+
+a#link_toWORK span{
+	display:block;
+	width:60px;
+	height:30px;
+	margin-top:40px;
+	text-align:right;
+}
+
+div#footer{
+	width:800px;
+	height:200px;
+	overflow:hidden;
+	position:absolute;
+	left:0px;
+	top:400px;
+	background:url(portfolio/images/me-2_colour.png) no-repeat right;
+}
+
+div#monochrome{
+	width:800px;
+	height:200px;
+	overflow:hidden;
+	position:absolute;
+	left:0px;
+	top:400px;
+	background-position:center right;
+	background-repeat:no-repeat;
+	-webkit-mask-repeat:no-repeat;
+	-webkit-mask-image:url(image/mask.png);
+	-webkit-mask-position:30% 20%;
+	-webkit-mask-size:200px;
+}
+
+canvas#banner{
+	position:absolute;
+	left:0;
+	top:0;
+}
+
+a#banner_toWORK{
+	display:block;
+	width:80px;
+	height:100%;
+	text-decoration:none;
+	border:none;
+	position:absolute;
+	left:0;
+	top:0;
+	transition:all 0.3s;
+	-moz-transition:all 0.3s;
+	-webkit-transition:all 0.3s;
+	-o-transition:all 0.3s;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:16px;
+	color:#ccc;
+}
+
+a#banner_toWORK:hover{
+	color:#fff;
+}
+
+a#banner_toWORK span{
+	display:block;
+	width:60px;
+	height:30px;
+	margin-top:40px;
+	text-align:right;
+	transform:rotate(90deg);
+	-o-transform:rotate(90deg);
+	-webkit-transform:rotate(90deg);
+	-moz-transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	z-index:1000;
+	
+}
+
+div#html5_banner{
+	background:#000 no-repeat;
+	position:absolute;
+	width:100%;
+	height:22px;
+	font-size:12px;
+	color:#fff;
+	padding-top:8px;
+	top:0;
+	left:0;
+	text-align:center;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+}
+
+div#html5_banner a{
+	color:#ccc;
+	text-decoration:none;
+}
+
+div#html5_banner a:hover{
+	color:#fff;
+	text-decoration:underline;
+}
+
+a#close_banner{
+	background:url("image/close.png") no-repeat center center;
+	width:30px;
+	height:30px;
+	display:block;
+	position:absolute;
+	top:0;
+	right:30px;
+}
+</style>
+</head>
+
+<body>
+<div id="main">
+<div id="timeline">
+<a id="born" class="clip" href="#" onClick="return false;"><h3>Born</h3><p>TAIPEI</p></a>
+<a id="bs" class="clip" href="#" onClick="return false;"><h3>B.S. MEM</h3><h4>NSYSU</h4><p>KAOHSIUNG</p></a>
+<a id="ms" class="clip" href="#" onClick="return false;"><h3>M.S. BME</h3><h4>NYMU</h4><p>TAIPEI</p></a>
+<a id="army" class="clip" href="#" onClick="return false;">&nbsp;</a>
+<a id="ctci" class="clip" href="#" onClick="return false;">&nbsp;</a>
+<a id="katdc" class="clip" href="#" onClick="return false;"><h3>USABILITY<br>ENGINEER</h3><h4>KatDC</h4><p>TAIPEI</p></a>
+<a id="pf_intern" class="clip" href="#" onClick="return false;"><h3>UI DESIGN<br>INTERN</h3><h4>Pilotfish</h4><p>MUNICH</p></a>
+<a id="pf" class="clip" href="#" onClick="return false;"><h3>INTERACTIVE<br>DESIGNER</h3><h4>Pilotfish</h4><p>MUNICH</p></a>
+<a id="wh" href="#" onClick="return false;">WORKING HOLIDAY</a>
+<a id="diwo" href="#" onClick="return false;">&nbsp;</a>
+</div>
+<a id="ctci_text" href="#" onClick="return false;" class="float_t"><h3>MECHANICAL ENGINEER</h3><h4>CTCI</h4><p>TAIPEI</p><div class="strike">&nbsp;</div><div class="strike2">&nbsp;</div></a>
+<a id="diwo_text" href="#" onClick="return false;" class="float_t"><h3>TEACHING ASSISTANT</h3><h4>DIWO CULTURE</h4><p>TAIPEI</p><div class="strike">&nbsp;</div><div class="strike2">&nbsp;</div></a>
+
+<div id="times">
+<div id="born_time" class="time_clip">JUN<br>1983</div>
+<div id="bs_time" class="time_clip">2001</div>
+<div id="ms_time" class="time_clip">2005</div>
+<div id="army_time" class="time_clip">2007</div>
+<div id="ctci_time" class="time_clip"><div class="mar">MAR</div><div class="aug">AUG</div>2008</div>
+<div id="katdc_time" class="time_clip">SEP<br>2008</div>
+<div id="pf_intern_time" class="time_clip">JUN<br>2011</div>
+<div id="pf_time" class="time_clip">APR<br>2012</div>
+</div>
+
+<div id="description">
+<div id="pf_detail" class="detail">
+<div class="detail_header"><div class="handler"> </div></div>
+<h3>INTERACTIVE DESIGNER</h3>
+<h4>PILOTFISH GmbH<br>
+MUNICH<br>
+APR. 2012 - CURRENT</h4>
+
+<p style="margin-bottom:34px;">After 6 months internship in Pilotfish Munich, it's great pleasure to join the team as Interactive Designer. The duty for the position will be design research, brainstorming, developing of idea, user interface design, graphic design and prototyping.</p>
+</div>
+
+
+<div id="pf_intern_detail" class="detail">
+<div class="detail_header"><div class="handler"> </div></div>
+<h3>USER INTERFACE DESIGN INTERN</h3>
+<h4>PILOTFISH GmbH<br>
+MUNICH<br>
+AUG. 2011 - JAN. 2012</h4>
+
+<p style="margin-bottom:34px;">User Interface design in going project (for heavy industrial device, potential tablet), graphic design for in-house event, 6 months internship in Pilotfish Munich</p>
+
+<div id="wh_flag"> </div>
+<h3>WORKING HOLIDAY in Germany</h3>
+<p>I can’t state if everyone need to discover his-/herself before getting old. I do believe it’s benefit to “clean-up” all the earning from my previous expience, incl. money and knowledge. In half year in Germany, I met Pilotfish team and work with them. I lived in Munich and discovered the impulse from culture difference and similarity. I experienced ”the lonly” nd found the value of friendship. It cleaned up inside and outside myself.</p>
+</div>
+
+<div id="katdc_detail" class="detail">
+<div class="detail_header"><div class="handler"> </div></div>
+<h3>USABILITY ENGINEER</h3>
+<h4>KatDC<br>
+TAIPEI<br>
+SEP. 2008 - JUN. 2011</h4>
+
+<p style="margin-bottom:34px;">Usability lab/testing procedure construction, prototype engineering, contact person between software engineer and graphic designers, usability assessments, UI idealization for home media devices, Promote User-Centered Design inside design team, Design guidelines documentation, Project leading</p>
+</div>
+
+<div id="ctci_detail" class="detail">
+<div class="detail_header"><div class="handler"> </div></div>
+<h3>MECHANICAL ENGINEER</h3>
+<h4>CTCI<br>
+TAIPEI<br>
+MAR. 2008 - AUG. 2008</h4>
+
+<p style="margin-bottom:34px;">Design the static equipment used in chemical planet, such as pressure vessel, tower, tank. Communication with world-wide vendor for technique confirmation and quotation estimation.</p>
+</div>
+
+<div id="diwo_detail" class="detail">
+<div class="detail_header"><div class="handler"> </div></div>
+<h3>TEACHING ASSISTANT</h3>
+<h4>PLAYGROUND 10 WORKSHOP - DIWO CULTURE<br>
+TAIPEI<br>
+9 AUG. 2010 - 13 AUG. 2010</h4>
+
+<p style="margin-bottom:34px;">Assist mentor from HONF and translate during workshop.</p>
+</div>
+
+<div id="army_detail" class="detail">
+<div class="detail_header"><div class="handler"> </div></div>
+<h3>REPUBLIC OF CHINA AMRY</h3>
+<h4>TAIWAN<br>
+OCT. 2007 - NOV. 2007 (interrupted)</h4>
+
+<p style="margin-bottom:34px;">Due to personal reason, the period of the serving in ROC army was interrupted in recruitment campaign.</p>
+</div>
+
+<div id="ms_detail" class="detail">
+<div class="detail_header"><div class="handler"> </div></div>
+<h3>M.S. BIOMEDICAL ENGINEERING</h3>
+<h4>NATIONAL YANG-MING UNIVERSITY<br>
+TAIPEI<br>
+2005 - 2007</h4>
+
+<p style="margin-bottom:34px;">"3D Dynamic Model Construction for Predicting Knee Kinematics - Comparison of native knee and knee arthroplasty", presented on the 21th Congress of International Society of Biomechanics</p>
+<p style="margin-bottom:34px;">"Three-dimensional Dynamic Model Construction for Predicting Knee Kinematics - Comparison of Native Knee and Knee Arthroplasty", Masters thesis</p>
+</div>
+
+<div id="bs_detail" class="detail">
+<div class="detail_header"><div class="handler"> </div></div>
+<h3>B.S. MECHANICAL AND ELECTRO-MECHANICAL ENGINEERING</h3>
+<h4>NATIONAL SUN YAT-SEN UNIVERSITY<br>
+KAOHSIUNG<br>
+2001 - 2005</h4>
+
+<p style="margin-bottom:34px;">"Man back-supporting system - A best supporting points analysis", presented on the 21th National Conference on Mechanical Engineering of CSME</p>
+</div>
+
+<div id="born_detail" class="detail">
+<div class="detail_header"><div class="handler"> </div></div>
+<h3>CHILDHOOD</h3>
+<h4>TAIPEI<br>
+Born on JUN. 1983</h4>
+
+<p style="margin-bottom:34px;">Lee Ken-Jung was born in a lovely family in New Taipei City. As the second son in family, he immersed in love from father and mother, also grandparents. As normal as Taiwanese children, he graduated from Lao-Song Elementary School, Heng-Yi Junior High School and Taipei Municipal Jianguo High School. As child dream, Lee found great interest in science and discovery.</p>
+</div>
+
+</div>
+
+<div id="footer"> </div>
+<div id="monochrome"> </div>
+
+</div>
+
+<canvas id="banner" width="80" height="100"></canvas>
+<a id="banner_toWORK" href="portfolio/"><span>works</span></a>
+<!--[if lt IE 9]>
+<div id="html5_banner">IT'S HTML5 WEBSITE. GET <a href="http://windows.microsoft.com/en-us/internet-explorer/products/ie/home/" target="_blank" >IE 9</a> OR <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">CHROME</a> OR <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">FIREFOX</a> TO HAVE COMPLETE EXPERIENCE</p></div>
+<a id="close_banner" href="#" onclick="return false" title="close banner"> </a>
+<![endif]-->
+
+</body>
+</html>

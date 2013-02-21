@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+function action_canvas(){
+	var canv = document.getElementById("maincan").getContext("2d");
+	canv.scale(0.2,0.2);
+	canv.fillStyle = "#CC0";
+	canv.fillRect(0,0,300,300);
+	canv.rotate(0.2);
+	canv.drawImage(document.getElementById('bg'),0.1,0.1);
+	
+	
+}
+</script>
+</head>
+
+<body onload="action_canvas()">
+<canvas id="maincan"></canvas>
+<img src="images/20101016.jpg" id="bg" />
+</body>
+</html>

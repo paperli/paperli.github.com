@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="shortcut icon" href="https://lh3.googleusercontent.com/-FidufjOqED0/T1BTGrzc6JI/AAAAAAAAKZ0/AhlxxJPql9c/s800/psign.gif">
+<link href="slidebox.css" rel="stylesheet" media="all" />
+<title>PaPers WORKS</title>
+<script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="../src/jquery.easing.1.3.js" type="text/javascript"></script>
+<script type="text/javascript">
+//var works = [{quote:"flash prototype for TV BD player",link:"prototype_navi.jpg"},{quote:"flash prototype for TV BD player",link:"prototype_navi2.jpg"},{quote:"flash prototype for TV BD player",link:"prototype_navi3.jpg"},{quote:"flash prototype for TV BD player",link:"prototype_navi4.jpg"},{quote:"flash prototype for asus OPlay",link:"prototype_dora1.jpg"},{quote:"flash prototype for asus OPlay",link:"prototype_dora2.jpg"},{quote:"flash prototype for asus OPlay",link:"prototype_dora3.jpg"},{quote:"flash prototype for home security TV program",link:"prototype_mavis1.jpg"},{quote:"flash prototype for home security TV program",link:"prototype_mavis2.jpg"},{quote:"flash prototype for home security TV program",link:"prototype_mavis3.jpg"},{quote:"flash prototype for TV player indexing",link:"prototype_alice1.jpg"},{quote:"flash prototype for TV player indexing",link:"prototype_alice2.jpg"},{quote:"flash prototype for android tablet",link:"prototype_icecream.jpg"},{quote:"flash prototype for android TV concept",link:"prototype_alice.jpg"}];
+
+var slide_width = 600;
+var slide_height = 400;
+var ww = 600;
+
+var works = [
+			{quote:"design and implement for pilotfish mcbw website, program guide and invitation",link:"mcbw_thumb.png",photos:["mcbw1.png","mcbw2.png","mcbw4.png"],height:450}
+			,{quote:"wireframe and prototype for pilotfish mobile website",link:"pf_mobile_thumb.png",photos:["pf_mobile1.png","pf_mobile2.png","pf_mobile3.png","pf_mobile4.png"],height:450}
+			,{quote:"graphic works. graphic design make informations visualized",link:"graphic_thumb.jpg",photos:["einladung-topf.jpg","einladung_ice_cave.jpg","wh_poster.jpg","party_buttons.jpg"],height:500,width:400}
+			,{quote:"flash prototype for skype on TV",link:"prototype_skype_thumb.jpg",photos:["prototype_skype1.jpg","prototype_skype2.jpg"]}
+			,{quote:"flash prototype for TV BD player",link:"prototype_navi_thumb.jpg",photos:["prototype_navi.jpg","prototype_navi2.jpg","prototype_navi4.jpg"]}
+			,{quote:"flash prototype for asus OPlay",link:"prototype_dora_thumb.jpg",photos:["prototype_dora1.jpg","prototype_dora2.jpg","prototype_dora3.jpg","prototype_dora4.jpg"]}
+			,{quote:"flash prototype for TV player indexing",link:"prototype_alice_thumb.jpg",photos:["prototype_alice1.jpg","prototype_alice2.jpg"]}
+			,{quote:"prototype for gesture player concept on android platform",link:"prototype_gesture_thumb.jpg",photos:["prototype_gesture1.jpg","prototype_gesture2.jpg","prototype_gesture3.jpg"]}
+			,{quote:"cultural model for BD player",link:"usability_BD_thumb.jpg",photos:["usability_BD.jpg"]}
+			,{quote:"user testing, heuristic inspection and usability lab planning",link:"usability_procedure_thumb.jpg",photos:["usability_procedure.jpg","usability_lab.png"]}
+			,{quote:"arduino prototype and iPhone app for diabetes food weighting system",link:"ddd_thumb.png",photos:["ddd_3.png","ddd_2.png","ddd_1.png"],height:450}
+			,{quote:"AR practice",link:"techart_ar_thumb.jpg",photos:["techart_ar.jpg"]}
+			,{quote:"Wii multi-touch simulation",link:"techart_mt_thumb.jpg",photos:["techart_mt2.jpg","techart_mt.jpg"]}
+			,{quote:"DIWO Culture - connection, three tutor show / broken wonderland",link:"techart_connection_thumb.jpg",photos:["techart_connection2.jpg","techart_connection1.jpg","techart_connection3.jpg","techart_HONF3.jpg","techart_HONF2.jpg","techart_HONF1.jpg"]}
+			,{quote:"PaPer's site - the joyful playground",link:"web_papersite_thumb.jpg",photos:["web_papersite1.jpg","web_papersite2.jpg"]}
+			,{quote:"Web-base database design for BME and JPTRC in Yang-Ming University",link:"web_jptrc_thumb.jpg",photos:["web_jptrc1.jpg"]}];
+
+//var categories = [{name:"prototype",color:"#30c"},{name:"usability",color:"#0f6"},{name:"tech-fun",color:"#F09"},{name:"web",color:"#0ff"}];
+
+var works_des = ["<h3>Pilotfish MCBW event</h3><p>The big innovation event in Munich! Munich Creative Business Week. I designed a webpage to present speech schedule in Pilotfish booth. <b>It's all about time!</b> The main part of this design is the time-line and the blobs of speakers. As requesed also made the pdf version and invitation card.</p>"
+				,"<h3>Pilotfish mobile website</h3><p>In aspect of usability, website is suggested to redesign for mobile phone. The different interaction pattern  and smaller screen are the major challenges. I designed the wireframe of Pilotfish mobile website. For test purpose I also made the interactive prototype in HTML and it was tested in mobile phone.</p>"
+				,"<h3>Graphics in life</h3><p>Designer got ideas from daily life. both for fun and practice, I worked out several posts for private or company events.</p>"
+				,"<h3>Skype on TV</h3><p>Since iPhone arrival, it become a trade making everything with SMART. Smart TV is one of this. With design team in KatDC, we were asked to design the Skype application in TV. The remote control interaction and 10-feet lean-back experience are the big challenges. Alongside of work flow and wireframe, I also made the prototype and it was tested in simulated remoter-TV environment.</p>"
+				,"<h3>TV BD Player</h3><p>Blu-ray has taken the place of CD player and becomes the major element in living room. But it's not enough. With internet connection, BD player can be a home media server or a receiver to play media from the computer in your room. Again the remoter interaction and lean back experience are the big challenges. With this project, I made the interactive prototype and tested it on simulated TV environment. Base on the wireframe, I made the set of flash components. The toolkit helps designers to create prototype easier and test UI more rapidly.</p>"
+				,"<h3>Media box in living room</h3><p>MUSIC | VIDEO | PHOTOS. With design team in KatDC, we were asked to design the multi-media box in living room. This project was in tight schedule and I was in charge of making flash prototype in very early stage of design phase. I cooperated with work flow planner tightly and sometimes had to create wireframe by myself. We include filtering feature for potential plenty of photos, songs and movies, and tested out live video when selected in interactive prototype.</p>"
+				,"<h3>TV player indexing</h3><p>Interaction is big part of user interface design. For testing of interactive prototype in TV, I built the simulated remoter-TV environment. I also made the \"sample\" user interface for music player. It's also the concept about how to index/surf potential plenty of multi-media data in TV.</p>"
+				,"<h3>Gesture Player on the Phone</h3><p>Touch screen in smart phone creates new generation of interaction. I designed three simple gestures to play(triangle), stop(square), switch(cross) song and made the app in Android phone to prove the concept.</p>"
+				
+				,"<h3>Work Models</h3><p>Designers are not users are not designers. WIth this golden rule, observation plays the heavy role in User-Centric Design. Work models are used to \"translate\" text-based raw data to visual. There are five models. Physical model for physical set-up, Cultural model for explanation of connection of culture, Artifact model for knowing how user interact with objects, Flow model for connection of people and surrounding and Sequence model for explanation of work flow. Designer can find the break point through these models and design user experience.</p>"
+				,"<h3>Usability assessment</h3><p>Designers are not users are not designers. User test, Heuristic inspection, Contextual Inquiry, these methodology assist designer to SEE what the user needs, not to THINK. With experience of usability engineer in KatDC, I conducted several usability study and suggested design iteration for designers. I also defined and planned the basic procedure and usability lab in KatDC.</p>"
+				,"<h3>Diabetes food weighting system</h3><p>I am very glad to join in this project because of my education background of Biomedical engineering. The project help diabetes patient to calculate the injection amount. I am in charge in making a prototype to weight the food and the app in iPhone to do calculation with weighted data. I used Arduino to connect with hacked electric scale and pass the data to online server. The app in iPhone gets the data from internet and dose calculation.</p>"
+				,"<h3>AR Kat</h3><p>AR is the super cool technology for extending the \"static\" world. This work is not only the practice of ARToolKit, but also the 3D modeling in Blender. And if you see the video carefully, you shall find that virtual Kat also appeared on iPod touch. It's a trick of making virtual thing form reality on virtual screen.</p>"
+				,"<h3>Wii Multi-touch</h3><p>The low-cost multi-touch environment is made with wii remoter and IR pens. I also rewrite the ActionScript 2-based library to ActionScrpt 3 and made a map application for testing.</p>"
+				,"<h3>DIWO Cuture</h3><p>DIWO culture is the workshop hold by playground, the tech-art team in Taiwan. In 5 days workshop, I was teaching assistant in the secession \"Generic Infrastructures Community and Tools.\" I worked with two other TAs and made the final project about \"NO-TECH\" connection board. We made a timeline and people can nail where were they and what did they do in it.</p>"
+				,"<h3>PaPers Site</h3><p>I LOVE HTML! My website is my playground for ideas, interaction and of course presenting of myself. Current site is the third edition of major upgrade.</p>"
+				,"<h3>Jointer Center Database System</h3><p>As I was master student in Yang-Ming university in Taipei, I built a system that help researchers in joint-replace center to collect, inspect and store the patient data. It was built on PHP and MySQL database.</p>"];
+
+var clicking = function(){
+	var limit = -1;
+	//console.log($(this).attr("id"));
+	var showroom = $("<div></div>").attr("id","showroom");
+	//console.log($("#showroom").css("height"));
+	
+	var hh = works[parseInt($(this).attr("id"),10)].height?works[parseInt($(this).attr("id"),10)].height:slide_height;
+	
+	var ww = works[parseInt($(this).attr("id"),10)].width?works[parseInt($(this).attr("id"),10)].width:slide_width;
+	
+	if ($(this).attr("id") == "11"){
+		showroom.append("<object width='600' height='400'><param name='movie' value='http://www.youtube.com/v/LP5pshZcQpU?fs=1&amp;hl=en_US&amp;color1=0x3a3a3a&amp;color2=0x999999'></param><param name='allowFullScreen' value='true'></param><param name='allowscriptaccess' value='always'></param><embed src='http://www.youtube.com/v/LP5pshZcQpU?fs=1&amp;hl=en_US&amp;color1=0x3a3a3a&amp;color2=0x999999' type='application/x-shockwave-flash' allowscriptaccess='always' allowfullscreen='true' width='600' height='400'></embed></object>").width(600).height(400);
+		showroom.css('top',($(window).height()-showroom.height())/2).css('left',($(window).width()-showroom.width())/2).css('padding-bottom',10);
+	} else {
+		
+		
+		//console.log(hh);
+		if (works[parseInt($(this).attr("id"),10)].photos.length > 1){
+			hh += 46;
+		}
+		
+		
+		var loading = $("<div></div>").addClass("loading");
+		showroom.append(loading).css('top',($(window).height()-showroom.height())/2).css('left',($(window).width()-showroom.width())/2);
+		//showroom.width(50).height(50);
+		//var pics = "<div class='slidebox' id='slidebox'><div class='slides'>";
+		var slidebox = $("<div></div>").addClass("slidebox").attr("id","slidebox").hide();;
+		var slides = $("<div></div>").addClass("slides").show();
+		var temp;
+		limit = works[parseInt($(this).attr("id"),10)].photos.length;
+		//showroom.width(100).height(100).css('top',($(window).width()-100)/2).css('left',($(window).height()-100)/2);
+		
+		for (var i=0; i<works[parseInt($(this).attr("id"),10)].photos.length;i++){
+			temp = $("<div></div>").addClass("slide");
+			temp_pic = $("<img></img>").attr('width',ww).attr("src","images/"+works[parseInt($(this).attr("id"),10)].photos[i]);
+			temp.append(temp_pic);
+			temp_pic.bind('load',function(){ 
+				limit--;
+				if (limit==0){
+					//loading completed!
+					slides.show();
+					showroom.animate({top:($(window).height()-hh-parseInt(showroom.css('padding-top'),10))/2,
+										left:($(window).width()-ww)/2,
+										width:ww, height:hh},500,function(){
+											slidebox.hide().fadeIn(300);
+										});
+					//showroom.animate({width:$('.slides').width(),height:$('.slides').height()},500);
+					//slides.delay(1000).slideDown("slow");
+					loading.fadeOut(); 
+				} 
+			});
+			slides.append(temp);
+			//pics += "<div class='slide'><img width='600' src='images/"+works[parseInt($(this).attr("id"),10)].photos[i]+"' /></div>";
+		}
+		
+		html = "<h3>CASE NAME</h3><p>case description</p>";
+		//alert($(".slide>div").css("marginLeft"));
+		des_content = $("<div></div>").width(ww-40).html(works_des[parseInt($(this).attr("id"),10)]); //margin: 10px*2
+		des = $("<div></div>").addClass("slide").append(des_content);
+		slides.append(des);
+		
+		
+		//slides.height(temp_pic.height());
+		slides.hide();
+		slidebox.append(slides);
+    	//pics += "</div></div>";
+		//var picsj = $(pics);
+		//picsj.hide();
+		//picsj.bind('load',function(){ console.log("let's go"); $(this).fadeIn(); });
+		showroom.append(slidebox);
+		//showroom.hide();
+		//showroom.bind('load',function(){ console.log("let's go"); $(this).fadeIn(); });
+	}
+	
+	var bigbox = $("<div></div>").css("height",$(window).height()).attr("id","bigbox");
+	bigbox.click(hideBigbox);
+	$("body").append(bigbox);
+	$("body").append(showroom);
+	
+	$('.slides').width(ww).height(hh);
+	
+	//$('.slides').height($('.slide').height());
+	//console.log('bb'+$('.slide').height());
+	/*if (works[parseInt($(this).attr("id"),10)].photos.length > 1){
+		hh += 46; // indicator height 46
+	}*/
+	//showroom.css("top",($(window).height()-hh-parseInt(showroom.css('padding-top'),10))/2).css("left",($(window).width()-ww)/2);
+	
+	if (works[parseInt($(this).attr("id"),10)].photos.length > 0){
+		slidebox_init(ww);
+		
+	}
+	
+	return false;
+}
+
+var hideBigbox = function(){
+	$(this).remove();
+	$("#showroom").remove();
+}
+
+var canvas;
+var context;
+var cpt;
+
+$(function(){
+	
+	canvas = document.getElementById("banner");
+	context = canvas.getContext("2d");
+	canvas.height = $(window).height();
+	cpt = {x:0,y:canvas.height/2};
+	
+	context.beginPath();
+	context.moveTo(0,0);
+	context.lineTo(0,$(window).height());
+	context.lineTo(100,$(window).height());
+	context.lineTo(100,0);
+	context.closePath();
+	context.fillStyle = "#fff";
+	context.fill();
+	
+	$("a#banner_toCV").hover(curving,flatting);
+	
+	$("body").hide().css('backgroundColor','#000').fadeIn(1000);
+	$("a#link_toCV").click(function(event){
+    	event.preventDefault();
+    	linkLocation = this.href;
+    	$("body").fadeOut(500, function() {
+        	window.location = linkLocation;
+    	});
+	});
+	
+	for (var i=0;i<works.length;i++){
+		var img = $("<img></img>").attr("src","images/"+works[i].link);
+		var fg = $("<img></img>").attr("id","fg").attr("src","images/icon_bg2.png");
+		var fg_over = $("<img></img>").attr("id","fg").attr("src","images/icon_bg.png").css("display","none");
+		var a = $("<a></a>").attr("id",i).attr("href","#").attr("quote",works[i].quote).append(img).append(fg);
+		var work = $("<div></div>").addClass("item").append(a).css("top",Math.floor(i/8)*100).css("left",(i%8)*100);
+		$("#works").append(work);
+		$(work).delay(1000*Math.random()).slideDown("slow");
+		$(work).hover(handIn,handOut).mousemove(handover);
+		$(a).click(clicking);
+	}
+	
+	$("#aboutme").delay(50).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#aboutme").hover(handin_link,handout_link);
+	$("#prototype").delay(100).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#prototype").hover(show_prototype,hide_prototype);
+	$("#usability").delay(300).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#usability").hover(show_usability,hide_usability);
+	$("#techart").delay(500).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#techart").hover(show_techart,hide_techart);
+	$("#web").delay(700).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#web").hover(show_web,hide_web);
+	$("#mail").delay(750).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#mail").hover(handin_link,handout_link);
+	/*for (var c=0;c<categories.length;c++){
+		var cate = $("<div></div>").attr("id",categories[c].name).addClass("category_unit").append(categories[c].name);
+		$("#category").append(cate);
+	}*/
+	
+	//masking of footer
+	if ($.browser.webkit){
+		$("#colorme").hover(startMask,stopMask);
+		$("#colorme").mousemove(placeMask);
+	}
+});
+
+function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect(), root = document.documentElement;
+
+        // return relative mouse position
+        var mouseX = evt.clientX - rect.left - root.scrollLeft;
+        var mouseY = evt.clientY - rect.top - root.scrollTop;
+        return {
+          x: mouseX,
+          y: mouseY
+        };
+      }
+
+var drawInterval;
+var mousePos;
+
+function curving(evt){
+	//alert("in");
+	clearInterval(drawInterval);
+	canvas.width = canvas.width;
+	
+	mousePos = getMousePos(canvas,evt);
+	cpt.x += (mousePos.x-cpt.x)*0.05;
+	cpt.y += (mousePos.y-cpt.y)*0.05;
+	
+	context.beginPath();
+	context.moveTo(0,0);
+	context.quadraticCurveTo(cpt.x,cpt.y,0,canvas.height);
+	context.lineTo(canvas.width,canvas.height);
+	context.lineTo(canvas.width,0);
+	context.closePath();
+	
+	context.fillStyle = "#fff";
+	context.fill();
+	
+	drawInterval = setInterval(draw,1);
+	document.getElementById("banner_toCV").addEventListener("mousemove",update);
+	
+}
+
+function update(evt){
+	//alert("q");
+	mousePos = getMousePos(canvas,evt);
+}
+
+function draw(){
+	//cpt = {x:(100-cpt.x)*0.95/100,y:cpt.y};
+	canvas.width = canvas.width;
+	
+	//mousePos = getMousePos(canvas,evt);
+	
+	cpt.x += (mousePos.x-cpt.x)*0.05;
+	cpt.y += (mousePos.y-cpt.y)*0.05;
+	
+	context.beginPath();
+	context.moveTo(0,0);
+	context.quadraticCurveTo(cpt.x,cpt.y,0,canvas.height);
+	context.lineTo(canvas.width,canvas.height);
+	context.lineTo(canvas.width,0);
+	context.closePath();
+	
+	context.fillStyle = "#fff";
+	context.fill();
+}
+
+function flatting(evt){
+	clearInterval(drawInterval);
+	
+	canvas.width = canvas.width;
+	
+	cpt.x += (0-cpt.x)*0.95/100;
+	cpt.y += (0-cpt.y)*0.95/100;
+	
+	context.beginPath();
+	context.moveTo(0,0);
+	context.quadraticCurveTo(cpt.x,cpt.y,0,canvas.height);
+	context.lineTo(canvas.width,canvas.height);
+	context.lineTo(canvas.width,0);
+	context.closePath();
+	
+	context.fillStyle = "#fff";
+	context.fill();
+	
+	drawInterval = setInterval(drawFlat,10);
+	document.getElementById("banner_toCV").removeEventListener("mousemove",update);
+}
+
+function drawFlat(evt){
+	canvas.width = canvas.width;
+	
+	cpt.x += (0-cpt.x)*0.95/100;
+	cpt.y += (0-cpt.y)*0.95/100;
+	
+	context.beginPath();
+	context.moveTo(0,0);
+	context.quadraticCurveTo(cpt.x,cpt.y,0,canvas.height);
+	context.lineTo(canvas.width,canvas.height);
+	context.lineTo(canvas.width,0);
+	context.closePath();
+	
+	context.fillStyle = "#fff";
+	context.fill();
+}
+
+function startMask(event){
+	//alert($(this).css("-webkit-mask-size"));
+	$("#footer").fadeTo(300,0.5);
+	$(this).css("backgroundImage","url(images/me-2_colour.png)");
+	//$(this).css("-webkit-mask-size","200px");
+	//$("#colorme").show();
+	//$("#colorme").css("webkitMaskImage","url(../image/mask.png)");
+	$(this).css("webkitMaskPosition",(event.pageX-$(this).offset().left-parseInt($(this).css("-webkit-mask-size"),10)/2)+"px "+(event.pageY-$(this).offset().top-parseInt($(this).css("-webkit-mask-size"),10)/2)+"px");
+	//$("#footer").mousemove()
+}
+
+function placeMask(){
+	$(this).css("webkitMaskPosition",(event.pageX-$(this).offset().left-parseInt($(this).css("-webkit-mask-size"),10)/2)+"px "+(event.pageY-$(this).offset().top-parseInt($(this).css("-webkit-mask-size"),10)/2)+"px");
+}
+
+function stopMask(){
+	$("#footer").fadeTo(300,1);
+	$(this).css("backgroundImage","none");
+	//$("#colorme").hide();
+	//$("#colorme").css("webkitMaskImage","none");
+}
+
+var handin_link = function(event){
+	expand_option($(this).children("a"));
+}
+
+var handout_link = function(event){
+	shrink_option($(this).children("a"));
+}
+
+var expand_option = function(obj){
+	$(obj).animate({height:160},"slow","easeInOutQuint")
+}
+
+var shrink_option = function(obj){
+	$(obj).animate({height:40},"slow","easeInOutQuint")
+}
+
+var show_prototype = function(event){
+	expand_option($(this));
+	$("#prototype_group").slideDown(500);
+}
+
+var hide_prototype = function(event){
+	shrink_option($(this));
+	$("#prototype_group").slideUp(200);
+}
+
+var show_usability = function(event){
+	expand_option($(this));
+	$("#usability_group").slideDown(500);
+}
+
+var hide_usability = function(event){
+	shrink_option($(this));
+	$("#usability_group").slideUp(200);
+}
+
+var show_techart = function(event){
+	expand_option($(this));
+	$("#techart_group").slideDown(500);
+}
+
+var hide_techart = function(event){
+	shrink_option($(this));
+	$("#techart_group").slideUp(200);
+}
+
+var show_web = function(event){
+	expand_option($(this));
+	$("#web_group").slideDown(500);
+}
+
+var hide_web = function(event){
+	shrink_option($(this));
+	$("#web_group").slideUp(200);
+}
+
+var handover = function(event){
+	$("#bubble").css("left",event.pageX+10).css("top",event.pageY+10);
+}
+
+var handIn = function(event){
+	
+	var bubble = $("<div></div>").css("left",event.pageX+10).css("top",event.pageY+10).attr("id","bubble").append($(this).children("a").attr("quote"));
+	$(this).find("#fg").attr("src","images/icon_bg.png");
+	$("body").append(bubble);
+}
+
+var handOut = function(event){
+	$("#bubble").remove();
+	$(this).find("#fg").attr("src","images/icon_bg2.png");
+}
+
+function show_title(){
+	
+}
+</script>
+<script src='slidebox.js'></script>
+
+<style type="text/css">
+#showroom{
+	width:50px;
+	height:50px;
+	overflow:hidden;
+	position:absolute;
+	background:#FFF;
+	padding:10px 10px 0 10px;
+}
+
+.loading{
+	position:absolute;
+	left:0px;
+	top:0px;
+	background:url(images/loading.gif) center no-repeat;
+	width:100%;
+	height:100%
+}
+
+#bigbox{
+	background:url(images/alphabg.png) repeat;
+	width:100%;
+	height:100px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	overflow:hidden;
+}
+
+body{
+	margin:0;
+	padding:0;
+	width:100%;
+	background:#000;
+}
+
+div{
+	font-family:Verdana, Geneva, sans-serif;
+	color:#666;
+}
+
+#main{
+	width:800px;
+	height:600px;
+	background:url(images/bg.png) #000;
+	margin:0 auto;
+	position:relative;
+}
+
+.item{
+	position:absolute;
+	width:100px;
+	height:100px;
+	display:none;
+}
+
+.item a{
+	border:none;
+	background:#333;
+	display:block;
+	width:96px;
+	position:absolute;
+	height:96px;
+	overflow:hidden;
+	margin:2px;
+}
+
+.item a:hover{
+	background:#9C0;
+	background-color:#0FF
+}
+
+.item img{
+	border:none;
+	position:absolute;
+}
+
+#category{
+	width:800px;
+	height:200px;
+	overflow:hidden;
+	position:absolute;
+	top:242px;
+	left:0px;
+}
+
+.category_unit{
+	font-size:16px;
+	padding:40px 0 0 0;
+	width:100px;
+	height:60px;
+}
+
+#works{
+	width:800px;
+	height:400px;
+	overflow:hidden;
+	position:absolute;
+	left:0px;
+	top:0px;
+}
+
+#footer{
+	width:800px;
+	height:200px;
+	overflow:hidden;
+	position:absolute;
+	left:0px;
+	top:400px;
+	background:url(images/me-2.png) no-repeat right;
+}
+
+#aboutme{
+	position:absolute;
+	left:0px;
+	width:131px;
+	height:115px;
+	display:none;
+}
+
+#aboutme a{
+	color:#DAD7C5;
+	background:#B25538;
+	font-size:14px;
+	padding:12px 0 0 9px;
+	width:122px;
+	height:100%;
+	display:block;
+	text-decoration:none;
+	border:none;
+}
+
+#aboutme a:hover{
+	color:#F4F1E6;
+}
+
+#prototype{
+	position:absolute;
+	left:138px;
+	background:#FEE361;
+	color:#5C7782;
+	padding:12px 0 0 33px;
+	height:115px;
+	width:144px;
+	display:none;
+}
+
+#usability{
+	position:absolute;
+	left:322px;
+	background:#7C5F53;
+	color:#CC8683;
+	padding:12px 0 0 17px;
+	height:115px;
+	width:127px;
+	display:none;
+}
+
+#techart{
+	position:absolute;
+	left:472px;
+	background:#CC8683;
+	color:#fff;
+	padding:12px 0 0 15px;
+	height:115px;
+	width:94px;
+	display:none;
+}
+
+#web{
+	position:absolute;
+	left:587px;
+	background:#BBA795;
+	color:#C35B26;
+	padding:12px 0 0 45px;
+	height:115px;
+	width:109px;
+	display:none;
+}
+
+#mail{
+	position:absolute;
+	left:748px;
+	width:52px;
+	height:115px;
+	display:none;
+}
+
+#mail a{
+	color:#0A3542;
+	background:#C6CDC7;
+	font-size:14px;
+	padding:12px 0 0 10px;
+	width:40px;
+	height:100%;
+	display:block;
+	text-decoration:none;
+	border:none;
+}
+
+#mail a:hover{
+	color:#3FA4BC;
+}
+
+#bubble{
+	position:absolute;
+	background:#ccc;
+	font-size:12px;
+	color:#333;
+	max-width:200px;
+	width:auto;
+	height:auto;
+	padding:3px 5px;
+}
+
+
+
+#prototype_group{
+	text-shadow:0px 0px 5px #d9d9d9;
+	font-size:14px;
+	padding:20px;
+	color:#5C7782;
+	position:absolute;
+	height:60px;
+	width:760px;
+	display:none;
+}
+
+.group_bg{
+	width:100%;
+	height:100%;
+	opacity:0.8;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:100;
+}
+
+#prototype_group .group_bg{
+	background:#FEE361;
+}
+
+.group_text{
+	position:absolute;
+	z-index:101;
+}
+
+#usability_group{
+	position:absolute;
+	font-size:14px;
+	padding:10px;
+	color:#CC8683;
+	height:80px;
+	width:180px;
+	display:none;
+	top:100px;
+}
+
+#usability_group .group_bg{
+	background:#7C5F53;
+	opacity:0.8;
+}
+
+#techart_group{
+	text-shadow:0px 0px 5px #d9d9d9;
+	position:absolute;
+	font-size:14px;
+	padding:5px;
+	color:#FFF;
+	position:absolute;
+	height:90px;
+	width:390px;
+	display:none;
+	top:100px;
+	left:200px;
+}
+
+#techart_group .group_bg{
+	background:#CC8683;
+}
+
+#web_group{
+	text-shadow:0px 0px 5px #d9d9d9;
+	position:absolute;
+	font-size:14px;
+	padding:5px;
+	color:#C35B26;
+	position:absolute;
+	height:90px;
+	width:190px;
+	display:none;
+	top:100px;
+	left:600px;
+}
+
+#web_group .group_bg{
+	background:#BBA795;
+}
+
+a#banner_toCV{
+	display:block;
+	position:absolute;
+	height:100%;
+	width:80px;
+	top:0;
+	right:0;
+	font-size:16px;
+	color:#e30613;
+	transition:all 0.3s;
+	-moz-transition:all 0.3s;
+	-webkit-transition:all 0.3s;
+	-o-transition:all 0.3s;
+	font-family:Verdana, Geneva, sans-serif;
+	text-decoration:none;
+}
+
+a#banner_toCV:hover{
+	color:#00983a;
+}
+
+a#banner_toCV span{
+	transform:rotate(90deg);
+	-webkit-transform:rotate(90deg);
+	-o-transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	-moz-transform:rotate(90deg);
+	transform-origin:center;
+	-webkit-transform-origin:center;
+	-o-transform-origin:center;
+	-ms-transform-origin:center;
+	-moz-transform-origin:center;
+	display:block;
+	width:auto;
+	height:30px;
+	margin-top:40px;
+	text-align:right;
+}
+
+a#link_toCV{
+	display:block;
+	width:70px;
+	height:70px;
+	background:#FFF;
+	text-decoration:none;
+	border:none;
+	position:absolute;
+	right:0;
+	top:200px;
+	transition:all 0.3s;
+	-moz-transition:all 0.3s;
+	-webkit-transition:all 0.3s;
+	-o-transition:all 0.3s;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:16px;
+	color:#e30613;
+}
+
+a#link_toCV:hover{
+	-webkit-box-shadow:inset 0px 0px 5px 5px rgba(150, 150, 150, 0.2);
+	-moz-box-shadow:inset 0px 0px 5px 5px rgba(150, 150, 150, 0.2);
+	box-shadow:inset 0px 0px 5px 5px rgba(150, 150, 150, 0.2);
+	color:#00983a;
+}
+
+a#link_toCV span{
+	display:block;
+	width:60px;
+	height:30px;
+	margin-top:20px;
+	text-align:right;
+}
+
+div#colorme{
+	width:800px;
+	height:200px;
+	overflow:hidden;
+	position:absolute;
+	left:0px;
+	top:400px;
+	background-position:center right;
+	background-repeat:no-repeat;
+	-webkit-mask-repeat:no-repeat;
+	-webkit-mask-image:url(../image/mask.png);
+	-webkit-mask-position:30% 20%;
+	-webkit-mask-size:200px;
+}
+
+canvas#banner{
+	position:absolute;
+	top:0;
+	right:0;
+	
+}
+
+div#cate_description{
+	position:absolute;
+	top:287px;
+	width:100%;
+	height:115px;
+	overflow:hidden;
+}
+
+div#cate_description span{
+	display:none;
+}
+
+div#prototype_des{
+	position:absolute;
+	display:none;
+	width:177px;
+	left:138px;
+	height:100%;
+}
+
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20911750-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+<div id="main">
+
+<div id="works"></div>
+
+<div id="category"><div id="aboutme"><a href="http://about.me/paperli" target="_blank">about.me</a></div>
+<div id="prototype">ui x interaction</div>
+<div id="usability">⊙ user</div>
+<div id="techart">tech ♥ art</div>
+<div id="web">.HTML</div>
+<div id="mail"><a href="mailto:paper.li@gmail.com" target="_blank">Mail</a></div></div>
+
+<div id="cate_description">
+<div id="prototype_des"><span>Graphic + Interaction = User Interface. From wireframe, paper prototype to computational interactive prototype, from TV to mobile, I used to make prototype in corresponding platform.</span></div>
+<div id="usability_des"><span>Designers are not users are not designers. Usability meths help designer SEE what the user needs, not THINK.</span></div>
+<div id="techart_des"><span>IDEA -> Technology. Technology make idea alive, but dosen't take beyond it!</span></div>
+<div id="web_des"><span>HTML is the joyful playground for new-born ideas! With power of html5 and css3, I did experiments in wide range of interaction, computational drawing and mobile application.</span></div>
+</div>
+
+<div id="grouping"><div id="prototype_group"><span class="group_bg"></span><span class="group_text">Graphic + Interaction = User Interface. From wireframe, paper prototype to computational interactive prototype, from TV to mobile, I used to make prototype in corresponding platform.</span></div>
+<div id="usability_group"><div class="group_bg"></div><span class="group_text">Designers are not users are not designers. Usability meths help designer SEE what the user needs, not THINK.</span></div>
+<div id="techart_group"><div class="group_bg"></div><span class="group_text">IDEA -> Technology. Technology help idea alive, but dosen't take beyond it!</span></div>
+<div id="web_group"><div class="group_bg"></div><span class="group_text">HTML is the joyful playground for new-born ideas!</span></div></div>
+
+
+<div id="footer"></div><div id="colorme"></div>
+
+</div>
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=6568967; 
+var sc_invisible=1; 
+var sc_security="4ee2a6bf"; 
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="tumblr page counter"
+href="http://statcounter.com/tumblr/" target="_blank"><img
+class="statcounter"
+src="http://c.statcounter.com/6568967/0/4ee2a6bf/1/"
+alt="tumblr page counter" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+
+<canvas id="banner" width="80" height="100"></canvas>
+<a href="../cv.html" id="banner_toCV"><span>time line</span></a>
+</body>
+</html>
