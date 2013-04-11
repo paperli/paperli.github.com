@@ -18,10 +18,13 @@ var slide_width = 600;
 var slide_height = 400;
 var ww = 600;
 
+var cate_items_data;
+
 var prev_case;
 
 var works = [
 			{abs:"mobiapps",quote:"mobile app for retail saler and small biz",link:"mobiapps_thumb.png",photos:["mobiapps1.png","mobiapps2.png","mobiapps4.png","mobiapps6.png","mobiapps7.png"]}
+			,{abs:"mobiapps",quote:"mobile app for retail saler and small biz",link:"mobiapps_thumb.png",photos:["mobiapps1.png","mobiapps2.png","mobiapps4.png","mobiapps6.png","mobiapps7.png"]}
 			,{abs:"clocky",quote:"Clocky, the year clock and clock UI concept",link:"clocky_thumb.png",photos:["clocky1.png","clocky2.png","clockyui.png"],height:450}
 			,{abs:"mobi",quote:"The official site of MobiApps co.",link:"mobi_thumb.png",photos:["mobi1.png","mobi2.png","mobi3.png"],height:450}
 			,{abs:"mcbw",quote:"design and implement for pilotfish mcbw website, program guide and invitation",link:"mcbw_thumb.png",photos:["mcbw1.png","mcbw2.png","mcbw4.png"],height:450}
@@ -43,6 +46,7 @@ var works = [
 
 var works_des = [
 				"<h3>MobiApps</h3><p>In end of 2012, I joined the joyful team MobiApps to lead the UX and UI design. We server the mobile app for retail sale and small business. With rapid design pattern, the mobile app can be prompt built and delivered. The flexibility of the team allowed me to break out serveral concepts including smart no-content mode, social biz UI, etc.. Still, I used variable tools like Dropbox or TAP to rapidly test new concept.</p>"
+				,"<h3>MobiApps</h3><p>In end of 2012, I joined the joyful team MobiApps to lead the UX and UI design. We server the mobile app for retail sale and small business. With rapid design pattern, the mobile app can be prompt built and delivered. The flexibility of the team allowed me to break out serveral concepts including smart no-content mode, social biz UI, etc.. Still, I used variable tools like Dropbox or TAP to rapidly test new concept.</p>"
 				,"<h3>Clocky</h3><p><a href='http://paperli.zzl.org/clocky/' target='_blank'>http://paperli.zzl.org/clocky/</a></p><p>The Clocky is inspired by The Present, the successful funded Kickstarter project. The Clocky shows the time in day and date in year. The outer most ring displayed as gradient color ring and represents the color for seasons. The hands of date, hour and minute are distort-able and better describe the always-change life. In tech. term, it is totally built with HTML5 canvas, no more flash.</p><p>The third pic represents the concept of clock UI. The idea is to create a new way to manipulate the time. The users can adjust the time by turning around the hour hand and minute hand on the clock and the thread/timeline of personal social messages will be changed seamlessly.</p>"
 				,"<h3>MobiApps</h3><p><a href='http://mobiapps.github.com/' target='_blank'>http://www.themobiapps.com/</a></p><p>TheMobiApps, the mobile app start-up in Taiwan, was planning to build the company identify prior to media publishing. I designed the whole new website with the 4 key colors in the company logo. The website consisted of the touch keys in present design trend, one-page scroll, simple and html5. It is planned to publish in March, 2013.</p>"
 				,"<h3>Pilotfish MCBW event</h3><p><a href='http://www.pilotfish.eu/mcbw/' target='_blank'>http://www.pilotfish.eu/mcbw/</a></p><p>The big innovation event in Munich! Munich Creative Business Week. I designed a webpage to present speech schedule in Pilotfish booth. <b>It's all about time!</b> The main part of this design is the time-line and the blobs of speakers. As requesed also made the pdf version and invitation card.</p>"
@@ -295,8 +299,6 @@ function init_draw(){
 	canvas.width = canvas.width;
 	
 	//mousePos = getMousePos(canvas,evt);
-	
-	
 	cpt.x += (end_pt.x-cpt.x)*0.01;
 	cpt.y += (end_pt.y-cpt.y)*0.01;
 	
@@ -390,6 +392,7 @@ $(function(){
     	});
 	});
 	
+	//redering showcase
 	for (var i=0;i<works.length;i++){
 		var img = $("<img></img>").attr("src","images/"+works[i].link);
 		var fg = $("<img></img>").attr("id","fg").attr("src","images/icon_bg2.png");
@@ -402,10 +405,13 @@ $(function(){
 		$(a).click(clicking);
 	}
 	
+	//fix #works box height
+	$("#works").height(100+Math.floor((i-1)/8)*100);
+	
 	
 	$("#links").hide().delay(70).slideDown('slow','easeInOutQuint').animate({height:30},800,'easeInQuint');
 	
-	$("#aboutme").delay(50).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#aboutme").delay(50).slideDown('slow','easeInOutQuint').animate({height:40+12},800,'easeInQuint');
 	$("#aboutme").hover(handin_link,handout_link);
 	$("#prototype").delay(100).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
 	$("#prototype").hover(show_prototype,hide_prototype);
@@ -415,8 +421,21 @@ $(function(){
 	$("#techart").hover(show_techart,hide_techart);
 	$("#web").delay(700).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
 	$("#web").hover(show_web,hide_web);
-	$("#mail").delay(750).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#mail").delay(750).slideDown('slow','easeInOutQuint').animate({height:40+12},800,'easeInQuint');
 	$("#mail").hover(handin_link,handout_link);
+	
+	//save category items' position and size info
+	cate_items_data = {
+		"aboutme":[$("#aboutme").css("left"),$("#aboutme").width()],
+		"prototype":[$("#prototype").css("left"),$("#prototype").width()],
+		"usability":[$("#usability").css("left"),$("#usability").width()],
+		"techart":[$("#techart").css("left"),$("#techart").width()],
+		"web":[$("#web").css("left"),$("#web").width()],
+		"mail":[$("#mail").css("left"),$("#mail").width()]
+	};
+	
+	console.log(cate_items_data);
+	
 	/*for (var c=0;c<categories.length;c++){
 		var cate = $("<div></div>").attr("id",categories[c].name).addClass("category_unit").append(categories[c].name);
 		$("#category").append(cate);
@@ -533,7 +552,7 @@ function drawFlat(evt){
 
 function startMask(event){
 	//alert($(this).css("-webkit-mask-size"));
-	$("#footer").fadeTo(300,0.5);
+	$("#footer #monochrome").fadeTo(300,0.5);
 	$(this).css("backgroundImage","url(images/me-2_colour.png)");
 	//$(this).css("-webkit-mask-size","200px");
 	//$("#colorme").show();
@@ -547,66 +566,78 @@ function placeMask(){
 }
 
 function stopMask(){
-	$("#footer").fadeTo(300,1);
+	$("#footer #monochrome").fadeTo(300,1);
 	$(this).css("backgroundImage","none");
 	//$("#colorme").hide();
 	//$("#colorme").css("webkitMaskImage","none");
 }
 
 var handin_link = function(event){
-	expand_option($(this).children("a"));
+	expand_option($(this));
 }
 
 var handout_link = function(event){
-	shrink_option($(this).children("a"));
+	shrink_option($(this));
 }
 
 var expand_option = function(obj){
-	$(obj).animate({height:160},"slow","easeInOutQuint")
+	var fix = ($(obj).attr("id") == "aboutme"|$(obj).attr("id") == "mail")?parseInt($(obj).children("a").css("paddingTop"),10):0;
+	$(obj).css("zIndex",101).animate({
+		height:160+fix,
+		width:800,
+		left:0
+	},"slow","easeInOutQuint");
 }
 
 var shrink_option = function(obj){
-	$(obj).animate({height:40},"slow","easeInOutQuint")
+	var fix = ($(obj).attr("id") == "aboutme"|$(obj).attr("id") == "mail")?parseInt($(obj).children("a").css("paddingTop"),10):0;
+	$(obj).animate({
+		height:40+fix,
+		width:cate_items_data[$(obj).attr("id")][1],
+		left:cate_items_data[$(obj).attr("id")][0]
+	},"slow","easeInOutQuint",function(){
+		$(this).css("zIndex",100);
+	});
 }
 
 var show_prototype = function(event){
 	expand_option($(this));
-	$("#prototype_group").slideDown(500);
+	//$("#prototype_group").slideDown(500);
 }
 
 var hide_prototype = function(event){
 	shrink_option($(this));
-	$("#prototype_group").slideUp(200);
+	//$("#prototype_group").slideUp(200);
 }
 
 var show_usability = function(event){
 	expand_option($(this));
-	$("#usability_group").slideDown(500);
+	//$("#usability_group").slideDown(500);
 }
 
 var hide_usability = function(event){
 	shrink_option($(this));
-	$("#usability_group").slideUp(200);
+	//$("#usability_group").slideUp(200);
 }
 
 var show_techart = function(event){
 	expand_option($(this));
-	$("#techart_group").slideDown(500);
+	//$("#techart_group").slideDown(500);
 }
 
 var hide_techart = function(event){
 	shrink_option($(this));
-	$("#techart_group").slideUp(200);
+	//$("#techart_group").slideUp(200);
 }
 
 var show_web = function(event){
 	expand_option($(this));
-	$("#web_group").slideDown(500);
+	//$("#web_group").slideDown(500);
 }
 
 var hide_web = function(event){
 	shrink_option($(this));
-	$("#web_group").slideUp(200);
+	//$("#web_group").slideUp(200);
 }
 
 var handover = function(event){
@@ -681,10 +712,10 @@ div{
 }
 
 .item{
-	position:absolute;
 	width:100px;
 	height:100px;
 	display:none;
+	position:absolute;
 }
 
 .item a{
@@ -710,9 +741,8 @@ div{
 
 #category{
 	width:800px;
-	height:200px;
+	height:240px;
 	overflow:hidden;
-	position:absolute;
 	top:242px;
 	left:0px;
 }
@@ -726,9 +756,8 @@ div{
 
 #works{
 	width:800px;
-	height:400px;
+	height:auto;
 	overflow:hidden;
-	position:absolute;
 	left:0px;
 	top:0px;
 }
@@ -737,9 +766,8 @@ div{
 	width:800px;
 	height:30px;
 	overflow:hidden;
-	position:absolute;
 	left:0;
-	top:210px;
+	margin-top:10px;
 }
 
 a#linkedin{
@@ -760,26 +788,55 @@ a#linkedin:hover{
 	width:800px;
 	height:200px;
 	overflow:hidden;
+	left:0px;
+	top:-200px;
+	position:relative;
+}
+
+div#colorme{
+	width:800px;
+	height:200px;
+	overflow:hidden;
 	position:absolute;
 	left:0px;
-	top:400px;
-	background:url(images/me-2.png) no-repeat right;
+	top:0px;
+	background-position:center right;
+	background-repeat:no-repeat;
+	-webkit-mask-repeat:no-repeat;
+	-webkit-mask-image:url(../image/mask.png);
+	-webkit-mask-position:30% 20%;
+	-webkit-mask-size:200px;
+}
+
+div#monochrome{
+	width:800px;
+	height:200px;
+	position:absolute;
+	left:0px;
+	top:0px;
+	background:url(images/me-2.png) no-repeat center center;
+}
+
+#category>div.skill{
+	z-index:100;
+	overflow:hidden;
 }
 
 #aboutme{
 	position:absolute;
+	background:#B25538;
 	left:0px;
 	width:131px;
-	height:115px;
+	height:127px;
 	display:none;
 }
 
 #aboutme a{
 	color:#DAD7C5;
-	background:#B25538;
+	
 	font-size:14px;
 	padding:12px 0 0 9px;
-	width:122px;
+	width:100%;
 	height:100%;
 	display:block;
 	text-decoration:none;
@@ -837,17 +894,18 @@ a#linkedin:hover{
 #mail{
 	position:absolute;
 	left:748px;
-	width:52px;
-	height:115px;
+	width:62px;
+	height:127px;
 	display:none;
+	background:#C6CDC7;
 }
 
 #mail a{
 	color:#0A3542;
-	background:#C6CDC7;
+	
 	font-size:14px;
 	padding:12px 0 0 10px;
-	width:40px;
+	width:100%;
 	height:100%;
 	display:block;
 	text-decoration:none;
@@ -1026,20 +1084,7 @@ a#link_toCV span{
 	text-align:right;
 }
 
-div#colorme{
-	width:800px;
-	height:200px;
-	overflow:hidden;
-	position:absolute;
-	left:0px;
-	top:400px;
-	background-position:center right;
-	background-repeat:no-repeat;
-	-webkit-mask-repeat:no-repeat;
-	-webkit-mask-image:url(../image/mask.png);
-	-webkit-mask-position:30% 20%;
-	-webkit-mask-size:200px;
-}
+
 
 canvas#banner{
 	position:absolute;
@@ -1054,6 +1099,7 @@ div#cate_description{
 	width:100%;
 	height:115px;
 	overflow:hidden;
+	display:none;
 }
 
 div#cate_description span{
@@ -1139,12 +1185,13 @@ div.case_des a:hover{
 
 <div id="links"><a id="linkedin" href="http://www.linkedin.com/pub/paper-lee/a/779/910" target="_blank" title="link me in LinkedIn!" alt="link me in LinkedIn!"></a></div>
 
-<div id="category"><div id="aboutme"><a href="http://about.me/paperli" target="_blank">about.me</a></div>
-<div id="prototype">ui x interaction</div>
-<div id="usability">⊙ user</div>
-<div id="techart">tech ♥ art</div>
-<div id="web">.HTML</div>
-<div id="mail"><a href="http://tinyurl.com/cvKenjungLee" target="_blank" title="download my CV right now!">CV</a></div></div>
+<div id="category">
+	<div id="aboutme" class="skill"><a href="http://about.me/paperli" target="_blank">about.me</a></div>
+<div id="prototype" class="skill">ui x interaction</div>
+<div id="usability" class="skill">⊙ user</div>
+<div id="techart" class="skill">tech ♥ art</div>
+<div id="web" class="skill">.HTML</div>
+<div id="mail" class="skill"><a href="http://tinyurl.com/cvKenjungLee" target="_blank" title="download my CV right now!">CV</a></div></div>
 
 <div id="cate_description">
 <div id="prototype_des"><span>Graphic + Interaction = User Interface. From wireframe, paper prototype to computational interactive prototype, from TV to mobile, I used to make prototype in corresponding platform.</span></div>
@@ -1159,7 +1206,10 @@ div.case_des a:hover{
 <div id="web_group"><div class="group_bg"></div><span class="group_text">HTML is the joyful playground for new-born ideas!</span></div></div>
 
 
-<div id="footer"></div><div id="colorme"></div>
+<div id="footer">
+	<div id="monochrome"></div>
+	<div id="colorme"></div>
+</div>
 
 </div>
 <!-- Start of StatCounter Code -->
