@@ -408,17 +408,29 @@ $(function(){
 	
 	$("#links").hide().delay(70).slideDown('slow','easeInOutQuint').animate({height:30},800,'easeInQuint');
 	
-	$("#aboutme").delay(50).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#aboutme").delay(50).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint',function(){
+		$(this).css("background-color","transparent");
+	});
 	$("#aboutme").hover(handin_link,handout_link);
-	$("#prototype").delay(100).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#prototype").delay(100).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint',function(){
+		$(this).css("background-color","transparent");
+	});
 	$("#prototype").hover(show_prototype,hide_prototype);
-	$("#usability").delay(300).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#usability").delay(300).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint',function(){
+		$(this).css("background-color","transparent");
+	});
 	$("#usability").hover(show_usability,hide_usability);
-	$("#techart").delay(500).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#techart").delay(500).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint',function(){
+		$(this).css("background-color","transparent");
+	});
 	$("#techart").hover(show_techart,hide_techart);
-	$("#web").delay(700).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#web").delay(700).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint',function(){
+		$(this).css("background-color","transparent");
+	});
 	$("#web").hover(show_web,hide_web);
-	$("#mail").delay(750).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint');
+	$("#mail").delay(750).slideDown('slow','easeInOutQuint').animate({height:40},800,'easeInQuint',function(){
+		$(this).css("background-color","transparent");
+	});
 	$("#mail").hover(handin_link,handout_link);
 	
 	//save category items' position and size info
@@ -590,9 +602,11 @@ var isExpanded = function(){
 }
 
 var expand_option = function(obj){
-	var fix = ($(obj).attr("id") == "aboutme"|$(obj).attr("id") == "mail")?parseInt($(obj).children("a").css("paddingTop"),10):0;
+	var fix = parseInt($(obj).children("a").css("paddingTop"),10);
 	
 	var delay_time = isExpanded()?200:1;
+	
+	$(obj).children("div.description").fadeIn(200);
 	
 	$(obj).stop(true,true).delay(delay_time).css("zIndex",99).animate({
 		height:220+fix,
@@ -601,18 +615,20 @@ var expand_option = function(obj){
 		paddingLeft: cate_items_data[$(obj).attr("id")][2] + cate_items_data[$(obj).attr("id")][0]
 	},400,"easeInOutQuint",function(){
 		$(this).css("zIndex",98);
-		$(this).children("p.group_text").fadeIn(200);
+		//$(this).children("p.group_text").fadeIn(200);
+		
 	});
 	cate_items_data[$(obj).attr("id")][3] = true; //set expanded = true
 }
 
 var shrink_option = function(obj){
 	
-	$(obj).children("p.group_text").fadeOut(200);
+	//$(obj).children("p.group_text").fadeOut(200);
+	$(obj).children("div.description").fadeOut(200);
 	
-	var fix = ($(obj).attr("id") == "aboutme"|$(obj).attr("id") == "mail")?parseInt($(obj).children("a").css("paddingTop"),10):0;
+	//var fix = parseInt($(obj).children("a").css("paddingTop"),10);
 	$(obj).stop(true,true).animate({
-		height:40+fix,
+		height:40,
 		width:cate_items_data[$(obj).attr("id")][1],
 		left:cate_items_data[$(obj).attr("id")][0],
 		paddingLeft:cate_items_data[$(obj).attr("id")][2]
@@ -846,99 +862,305 @@ div#monochrome{
 	overflow:hidden;
 }
 
+#category>div.skill>div.description{
+	/* description for each skill */
+	width:100%;
+	height:100px;
+	position:absolute;
+	left:0px;
+	display:none;
+}
+
+#category div.description>span{
+	display:block;
+	height:100px;
+	width:100%;
+	padding:20px;
+}
+
+#category>div.skill>div>.talk{
+	margin-top:10px;
+}
+
 #aboutme{
 	position:absolute;
-	background:#B25538;
 	left:0px;
-	width:122px;
+	width:131px;
 	height:115px;
 	display:none;
-	padding:12px 0 0 9px;
+	background:#B25538;
 	overflow:hidden;
 }
 
-#aboutme a{
+#aboutme>a{
+	background:#B25538;
 	color:#DAD7C5;
 	font-size:14px;
 	display:block;
 	text-decoration:none;
 	border:none;
-	width:100%;
-	height:100%;
+	width:122px;
+	height:48px;
+	padding:12px 0 0 9px;
 }
 
-#aboutme a:hover{
+#aboutme>a:hover{
+	color:#F4F1E6;
+}
+
+#aboutme_des>span{
+	background:#B25538;
+	color:#DAD7C5;
+}
+
+div#aboutme_des .talk{
+	margin-left:10px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #b25438 transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #b25438 #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+div#aboutme_des a{
+	color:#DAD7C5;
+}
+
+div#aboutme_des a:hover{
 	color:#F4F1E6;
 }
 
 #prototype{
+	background:#FEE361;
 	position:absolute;
 	left:138px;
+	height:115px;
+	width:177px;
+	display:none;
+}
+
+#prototype>a{
 	background:#FEE361;
 	color:#5C7782;
+	font-size:14px;
+	display:block;
+	text-decoration:none;
+	border:none;
+	width:144px;
+	height:48px;
 	padding:12px 0 0 33px;
+}
+
+#prototype>a:hover{
+	color:#4B6671;
+}
+
+#prototype_des>span{
+	background:#FEE361;
+	color:#5C7782;
+}
+
+div#prototype_des .talk{
+	margin-left:148px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #FEE361 transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #FEE361 #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+#usability{
+	background:#7C5F53;
+	position:absolute;
+	left:322px;
 	height:115px;
 	width:144px;
 	display:none;
 }
 
-#usability{
-	position:absolute;
-	left:322px;
+#usability>a{
 	background:#7C5F53;
 	color:#CC8683;
-	padding:12px 0 0 17px;
-	height:115px;
+	font-size:14px;
+	display:block;
+	text-decoration:none;
+	border:none;
 	width:127px;
-	display:none;
+	height:48px;
+	padding:12px 0 0 17px;
+}
+
+#usability>a:hover{
+	color:#BB7572;
+}
+
+#usability_des>span{
+	background:#7C5F53;
+	color:#CC8683;
+}
+
+div#usability_des .talk{
+	margin-left:332px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #7C5F53 transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #7C5F53 #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
 }
 
 #techart{
 	position:absolute;
 	left:472px;
 	background:#CC8683;
-	color:#fff;
-	padding:12px 0 0 15px;
 	height:115px;
-	width:94px;
+	width:109px;
 	display:none;
+}
+
+#techart>a{
+	background:#CC8683;
+	color:#fff;
+	font-size:14px;
+	display:block;
+	text-decoration:none;
+	border:none;
+	width:94px;
+	height:48px;
+	padding:12px 0 0 15px;
+}
+
+#techart>a:hover{
+	color:#eeeeee;
+}
+
+#techart_des>span{
+	background:#CC8683;
+	color:#fff;
+}
+
+div#techart_des .talk{
+	margin-left:482px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #CC8683 transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #CC8683 #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
 }
 
 #web{
 	position:absolute;
 	left:587px;
 	background:#BBA795;
-	color:#C35B26;
-	padding:12px 0 0 45px;
 	height:115px;
-	width:109px;
+	width:154px;
 	display:none;
+}
+
+#web>a{
+	background:#BBA795;
+	color:#C35B26;
+	font-size:14px;
+	display:block;
+	text-decoration:none;
+	border:none;
+	width:109px;
+	height:48px;
+	padding:12px 0 0 45px;
+}
+
+#web>a:hover{
+	color:#B24A15;
+}
+
+#web_des>span{
+	background:#BBA795;
+	color:#C35B26;
+}
+
+div#web_des .talk{
+	margin-left:597px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #BBA795 transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #BBA795 #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
 }
 
 #mail{
 	position:absolute;
 	left:748px;
-	width:42px;
+	width:52px;
 	height:115px;
 	display:none;
 	background:#C6CDC7;
-	padding:12px 0 0 10px;
 	overflow:hidden;
 }
 
-#mail a{
+#mail>a{
+	background:#C6CDC7;
 	color:#0A3542;
 	font-size:14px;
 	display:block;
-	width:100%;
-	height:100%;
+	width:42px;
+	height:48px;
 	text-decoration:none;
 	border:none;
+	padding:12px 0 0 10px;
 }
 
-#mail a:hover{
+#mail>a:hover{
 	color:#3FA4BC;
 }
+
+#mail_des>span{	
+	background:#C6CDC7;
+	color:#0A3542;
+}
+
+div#mail_des .talk{
+	margin-left:758px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #C6CDC7 transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #C6CDC7 #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+div#mail_des a{
+	color:#0A3542;
+}
+
+div#mail_des a:hover{
+	color:#3FA4BC;
+}
+
+
+
+
+
+
+
+
+
+
 
 #bubble{
 	position:absolute;
@@ -1123,24 +1345,21 @@ canvas#banner{
 
 div#cate_description{
 	position:absolute;
-	top:287px;
+	top:0;
+	left:0;
 	width:100%;
 	height:115px;
 	overflow:hidden;
-	display:none;
+	display:block;
 }
 
-div#cate_description span{
-	display:none;
-}
-
-div#prototype_des{
+div#cate_description>div{
 	position:absolute;
-	display:none;
-	width:177px;
-	left:138px;
-	height:100%;
+	top:30px;
+	left:0px;
 }
+
+
 
 div#html5_banner{
 	background:#fff no-repeat;
@@ -1216,24 +1435,38 @@ div.case_des a:hover{
 <div id="category">
 	<div id="aboutme" class="skill">
 		<a href="http://about.me/paperli" target="_blank">about.me</a>
-		<p class="group_text"><a href="http://about.me/paperli" target="_blank">http://ABOUT.ME/PAPERLI</a></p></div>
-<div id="prototype" class="skill">ui x interaction
-	<p class="group_text">Graphic + Interaction = User Interface. From wireframe, paper prototype to computational interactive prototype, from TV to mobile, I used to make prototype in corresponding platform.</p></div>
-<div id="usability" class="skill">⊙ user
-	<p class="group_text">Designers are not users are not designers. Usability meths help designer SEE what the user needs, not THINK.<p></div>
-<div id="techart" class="skill">tech ♥ art
-	<p class="group_text">IDEA -> Technology. Technology makes idea alive, but doesn't take beyond it!</p></div>
-<div id="web" class="skill">.HTML
-	<p class="group_text">HTML is the joyful playground for new-born ideas!</p></div>
-<div id="mail" class="skill"><a href="http://tinyurl.com/cvKenjungLee" target="_blank" title="download my CV right now!">CV</a>
-	<p class="group_text"><a href="http://tinyurl.com/cvKenjungLee" target="_blank">GO AND FETCH MY RESUME!!</a></p></div></div>
-
-<div id="cate_description">
-<div id="prototype_des"><span>Graphic + Interaction = User Interface. From wireframe, paper prototype to computational interactive prototype, from TV to mobile, I used to make prototype in corresponding platform.</span></div>
-<div id="usability_des"><span>Designers are not users are not designers. Usability meths help designer SEE what the user needs, not THINK.</span></div>
-<div id="techart_des"><span>IDEA -> Technology. Technology makes idea alive, but doesn't take beyond it!</span></div>
-<div id="web_des"><span>HTML is the joyful playground for new-born ideas! With power of html5 and css3, I did experiments in wide range of interaction, computational drawing and mobile application.</span></div>
+		<div class="description" id="aboutme_des"><div class="talk"> </div><span><a href="http://about.me/paperli" target="_blank">http://ABOUT.ME/PAPERLI</a></span></div>
+	</div>
+	<div id="prototype" class="skill">
+		<a href="#" onclick="<script>return false;</script>">ui x interaction</a>
+		<div class="description" id="prototype_des"><div class="talk"> </div><span>Graphic + Interaction = User Interface. From wireframe, paper prototype to computational interactive prototype, from TV to mobile, I used to make prototype in corresponding platform.</span></div>
+	</div>
+	<div id="usability" class="skill">
+		<a href="#" onclick="<script>return false;</script>">⊙ user</a>
+		<div class="description" id="usability_des"><div class="talk"> </div><span>Designers are not users are not designers. Usability meths help designer SEE what the user needs, not THINK.</span></div>
+	</div>
+	<div id="techart" class="skill">
+		<a href="#" onclick="<script>return false;</script>">tech ♥ art</a>
+		<div class="description" id="techart_des"><div class="talk"> </div><span>IDEA -> Technology. Technology makes idea alive, but doesn't take beyond it!</span></div>
+	</div>
+	<div id="web" class="skill">
+		<a href="#" onclick="<script>return false;</script>">.HTML</a>
+		<div class="description" id="web_des"><div class="talk"> </div><span>HTML is the joyful playground for new-born ideas! With power of html5 and css3, I did experiments in wide range of interaction, computational drawing and mobile application.</span></div>
+	</div>
+	<div id="mail" class="skill">
+		<a href="http://tinyurl.com/cvKenjungLee" target="_blank" title="download my CV right now!">CV</a>
+		<div class="description" id="mail_des"><div class="talk"> </div><span><a href="http://tinyurl.com/cvKenjungLee" target="_blank">GO AND FETCH MY RESUME!!</a></span></div>
+	</div>
 </div>
+
+<!-- <div id="cate_description">
+<div id="aboutme_des"><div class="talk"> </div><span><a href="http://about.me/paperli" target="_blank">http://ABOUT.ME/PAPERLI</a></span></div>
+<div id="prototype_des"><div class="talk"> </div><span>Graphic + Interaction = User Interface. From wireframe, paper prototype to computational interactive prototype, from TV to mobile, I used to make prototype in corresponding platform.</span></div>
+<div id="usability_des"><div class="talk"> </div><span>Designers are not users are not designers. Usability meths help designer SEE what the user needs, not THINK.</span></div>
+<div id="techart_des"><div class="talk"> </div><span>IDEA -> Technology. Technology makes idea alive, but doesn't take beyond it!</span></div>
+<div id="web_des"><div class="talk"> </div><span>HTML is the joyful playground for new-born ideas! With power of html5 and css3, I did experiments in wide range of interaction, computational drawing and mobile application.</span></div>
+<div id="mail_des"><div class="talk"> </div><span><a href="http://tinyurl.com/cvKenjungLee" target="_blank">GO AND FETCH MY RESUME!!</a></span></div>
+</div> -->
 
 <div id="grouping"><div id="prototype_group"><span class="group_bg"></span><span class="group_text">Graphic + Interaction = User Interface. From wireframe, paper prototype to computational interactive prototype, from TV to mobile, I used to make prototype in corresponding platform.</span></div>
 <div id="usability_group"><div class="group_bg"></div><span class="group_text">Designers are not users are not designers. Usability meths help designer SEE what the user needs, not THINK.</span></div>
@@ -1244,6 +1477,14 @@ div.case_des a:hover{
 <div id="footer">
 	<div id="monochrome"></div>
 	<div id="colorme"></div>
+	<!-- <div id="cate_description">
+	<div id="aboutme_des"><div class="talk"> </div><span><a href="http://about.me/paperli" target="_blank">http://ABOUT.ME/PAPERLI</a></span></div>
+	<div id="prototype_des"><div class="talk"> </div><span>Graphic + Interaction = User Interface. From wireframe, paper prototype to computational interactive prototype, from TV to mobile, I used to make prototype in corresponding platform.</span></div>
+	<div id="usability_des"><div class="talk"> </div><span>Designers are not users are not designers. Usability meths help designer SEE what the user needs, not THINK.</span></div>
+	<div id="techart_des"><div class="talk"> </div><span>IDEA -> Technology. Technology makes idea alive, but doesn't take beyond it!</span></div>
+	<div id="web_des"><div class="talk"> </div><span>HTML is the joyful playground for new-born ideas! With power of html5 and css3, I did experiments in wide range of interaction, computational drawing and mobile application.</span></div>
+	<div id="mail_des"><div class="talk"> </div><span><a href="http://tinyurl.com/cvKenjungLee" target="_blank">GO AND FETCH MY RESUME!!</a></span></div>
+	</div> -->
 </div>
 
 </div>
