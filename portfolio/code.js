@@ -446,6 +446,12 @@ $(function(){
 		$("#colorme").hover(startMask,stopMask);
 		$("#colorme").mousemove(placeMask);
 	}
+	
+	//render the big arrow between timeline and portfolio
+	$(".big_arrow").css("border-right-width",$(window).width()/2).css("border-left-width",$(window).width()/2);
+	$(window).resize(function(){
+		$(".big_arrow").css("border-right-width",$(window).width()/2).css("border-left-width",$(window).width()/2);
+	});
 });
 
 function getMousePos(canvas, evt) {
@@ -553,6 +559,7 @@ function drawFlat(evt){
 function startMask(event){
 	//alert($(this).css("-webkit-mask-size"));
 	$("#footer #monochrome").fadeTo(300,0.5);
+	
 	$(this).css("backgroundImage","url(images/me-2_colour.png)");
 	//$(this).css("-webkit-mask-size","200px");
 	//$("#colorme").show();
