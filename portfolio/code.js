@@ -336,6 +336,7 @@ $(function(){
 		prev_case = case_id;
 	});
 	
+	/* //Draw the hint banner to CV
 	canvas = document.getElementById("banner");
 	//alert($.browser.msie + parseInt($.browser.version,10));
 	if (!($.browser.msie && parseInt($.browser.version,10)<9)){
@@ -366,7 +367,7 @@ $(function(){
 	}
 	$(window).resize(function(){
 		canvas.height = $(window).height();
-	});
+	});*/
 	
 	
 	
