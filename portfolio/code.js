@@ -441,10 +441,12 @@ $(function(){
 		$("#category").append(cate);
 	}*/
 	
+	$("#timeline").makeFloating();
+	
 	//masking of footer
 	if ($.browser.webkit){
-		$("#colorme").hover(startMask,stopMask);
-		$("#colorme").mousemove(placeMask);
+		$(".colorme").hover(startMask,stopMask);
+		$(".colorme").mousemove(placeMask);
 	}
 	
 	//render the big arrow between timeline and portfolio
@@ -556,9 +558,12 @@ function drawFlat(evt){
 	context.fill();
 }
 
+//footer masking
 function startMask(event){
+	//console.log("i am in");
 	//alert($(this).css("-webkit-mask-size"));
-	$("#footer #monochrome").fadeTo(300,0.5);
+	$(this).parent().children(".monochrome").fadeTo(300,0.5);
+	//$("#footer>.monochrome").fadeTo(300,0.5);
 	
 	$(this).css("backgroundImage","url(images/me-2_colour.png)");
 	//$(this).css("-webkit-mask-size","200px");
@@ -573,7 +578,8 @@ function placeMask(){
 }
 
 function stopMask(){
-	$("#footer #monochrome").fadeTo(300,1);
+	$(this).parent().children(".monochrome").fadeTo(300,1);
+	//$("#footer>.monochrome").fadeTo(300,1);
 	$(this).css("backgroundImage","none");
 	//$("#colorme").hide();
 	//$("#colorme").css("webkitMaskImage","none");
@@ -695,3 +701,25 @@ var handOut = function(event){
 function show_title(){
 	
 }
+
+(function($){
+	$.fn.makeFloating = function(){
+		//alert($(this).attr("id"));
+		var prev_pos;
+		var prev_width;
+		$(this).children(".clip").each(function(i){
+			//console.log(i);
+			if (i == 0){
+				//the first item
+				$(this).css("left",0);
+				prev_pos = 0;
+				prev_width = parseInt($(this).css("width"),10);
+			} else {
+				console.log(prev_pos + "::" + prev_width);
+				$(this).css("left",prev_pos + prev_width);
+				prev_pos = prev_pos + prev_width;
+				prev_width = parseInt($(this).css("width"),10);
+			}
+		});
+	}
+})(jQuery);
