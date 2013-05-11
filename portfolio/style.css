@@ -750,12 +750,14 @@ div#timeline_main>.hint{
 }
 
 div#timeline{
-	min-height:400px;
+	min-height:600px;
 	width:100%;
 	position:relative;
+	overflow:hidden;
 }
 
 div#timeline>div.clip{
+	z-index:100;
 	position:absolute;
 	min-height:100px;
 	background-color:transparent;
@@ -798,9 +800,20 @@ div#timeline a.summary:hover{
 	opacity:1;
 }
 
+div#timeline .detail{
+	display:none;
+	position:absolute;
+	left:0;
+	padding:20px;
+	color:#fff;
+	width:760px;
+}
+
 div.summary_text{
 	color:#fff;
 }
+
+
 
 #born_box{
 	width:103px;
@@ -816,6 +829,10 @@ a#born>.summary_text{
 
 a#born>.summary_time{
 	
+}
+
+#born_box>.detail{
+	background:#00983a;
 }
 
 #bs_box{
@@ -834,6 +851,10 @@ a#bs>.summary_time{
 	
 }
 
+#bs_box>.detail{
+	background:#ea5b0c;
+}
+
 #ms_box{
 	width:98px;
 }
@@ -850,6 +871,10 @@ a#ms>.summary_time{
 	
 }
 
+#ms_box>.detail{
+	background:#e30613;
+}
+
 #army_box{
 	width:52px;
 }
@@ -864,6 +889,10 @@ a#army>.summary_time{
 	
 }
 
+#army_box>.detail{
+	background:#00983a;
+}
+
 #ctci_box{
 	width:41px;
 }
@@ -876,6 +905,10 @@ a#ctci>.summary_text{
 
 a#ctci>.summary_time{
 	
+}
+
+#ctci_box>.detail{
+	background:#273488;
 }
 
 #katdc_box{
@@ -894,6 +927,10 @@ a#katdc>.summary_time{
 	
 }
 
+#katdc_box>.detail{
+	background:#82368c;
+}
+
 #pf_intern_box{
 	width:112px;
 }
@@ -910,6 +947,10 @@ a#pf_intern>.summary_time{
 	
 }
 
+#pf_intern_box>.detail{
+	background:#00983a;
+}
+
 #pf_box{
 	width:132px;
 }
@@ -924,6 +965,10 @@ a#pf>.summary_text{
 
 a#pf>.summary_time{
 	
+}
+
+#pf_box>.detail{
+	background:#ea5b0c;
 }
 
 /* TODO: style the spot */

@@ -11,6 +11,8 @@ var cate_items_data;
 
 var prev_case;
 
+var timeline_boxes_pos = {};
+
 //{abs:"mobiapps",quote:"mobile app for retail saler and small biz",link:"mobiapps_thumb.png",photos:["touchbook1.png","touchbook2.png","touchbook3.png","mobiapps1.png","mobiapps2.png","mobiapps4.png","mobiapps6.png","mobiapps7.png"]}
 var works = [{abs:"mobiapps",quote:"mobile app for retail saler and small biz",link:"mobiapps_thumb.png",photos:["mobiapps1.png","mobiapps2.png","mobiapps4.png","mobiapps6.png","mobiapps7.png"]}
 			,{abs:"clocky",quote:"Clocky, the year clock and clock UI concept",link:"clocky_thumb.png",photos:["clocky1.png","clocky2.png","clockyui.png"],height:450}
@@ -441,7 +443,9 @@ $(function(){
 		$("#category").append(cate);
 	}*/
 	
+	//positioning timeline boxes
 	$("#timeline").makeFloating();
+	
 	
 	//masking of footer
 	if ($.browser.webkit){
@@ -709,17 +713,76 @@ function show_title(){
 		var prev_width;
 		$(this).children(".clip").each(function(i){
 			//console.log(i);
+			$(this).applyAction();
 			if (i == 0){
 				//the first item
 				$(this).css("left",0);
+				//timeline_boxes_pos[$(this).attr("id")].left = 0;
+				timeline_boxes_pos[$(this).attr("id")] = [0,parseInt($(this).css("width"),10),0,false]; //[left,width,paddin,is_expanded]
 				prev_pos = 0;
 				prev_width = parseInt($(this).css("width"),10);
 			} else {
-				console.log(prev_pos + "::" + prev_width);
+				//console.log(prev_pos + "::" + prev_width);
 				$(this).css("left",prev_pos + prev_width);
+				//timeline_boxes_pos[$(this).attr("id")].left = prev_pos + prev_width;
+				timeline_boxes_pos[$(this).attr("id")] = [prev_pos + prev_width,parseInt($(this).css("width"),10),0,false];
 				prev_pos = prev_pos + prev_width;
 				prev_width = parseInt($(this).css("width"),10);
 			}
+		});
+		console.log(timeline_boxes_pos);
+	}
+	
+	$.fn.applyAction = function(){
+		// in .clip #*_box
+		$(this).hover(function(){
+			//when mouse in a box...
+	
+			var delay_time = isExpanded()?200:1;
+			
+			//console.log($(this).attr("id"));
+	
+			$(this).children(".detail").fadeIn(200);
+			/*$(this).children(".summary").stop(true,true).delay(delay_time).animate({
+				paddingLeft: timeline_boxes_pos[$(this).attr("id")][0]
+			},400,"easeInOutQuint");*/
+	
+			$(this).stop(true,true).delay(delay_time).css("zIndex",99).animate({
+				height:600,
+				width:800,
+				left:0,
+				paddingLeft: timeline_boxes_pos[$(this).attr("id")][0]
+			},400,"easeInOutQuint",function(){
+				$(this).css("zIndex",98);
+				//$(this).children("p.group_text").fadeIn(200);
+		
+			});
+			//console.log($(this).attr("id"));
+			timeline_boxes_pos[$(this).attr("id")][3] = true; //set expanded = true
+			
+		},
+		function(){
+			console.log("out!: "+$(this).attr("id"));
+			//when mouse out a box...
+			$(this).children(".detail").fadeOut(200);
+			//console.log($(this).parent().attr("id"));
+				
+			/*$(this).children(".summary").stop(true,true).animate({
+				paddingLeft:0
+			},200,"easeInOutQuint");*/
+			//var fix = parseInt($(obj).children("a").css("paddingTop"),10);
+			$(this).stop(true,true).animate({
+				height:227,
+				width:timeline_boxes_pos[$(this).attr("id")][1],
+				left:timeline_boxes_pos[$(this).attr("id")][0],
+				paddingLeft:0
+			},200,"easeInOutQuint",function(){
+				$(this).css("zIndex",100);
+				//console.log($(this).attr("id")+"_box");
+				//timeline_boxes_pos[$(this).attr("id")+"_box"][3] = false;
+				timeline_boxes_pos[$(this).attr("id")][3] = false; //set expanded = false
+			});
+			
 		});
 	}
 })(jQuery);
