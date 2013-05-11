@@ -807,13 +807,14 @@ div#timeline .detail{
 	padding:20px;
 	color:#fff;
 	width:760px;
+	margin-top:20px;
 }
 
 div.summary_text{
 	color:#fff;
 }
 
-
+/* === born box === */
 
 #born_box{
 	width:103px;
@@ -835,6 +836,21 @@ a#born>.summary_time{
 	background:#00983a;
 }
 
+#born_box>.detail>.detail_header{
+	margin-top:-38px;
+	margin-bottom:0px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #00983a transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #00983a #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+/* === bs box === */
+
 #bs_box{
 	width:132px;
 }
@@ -854,6 +870,22 @@ a#bs>.summary_time{
 #bs_box>.detail{
 	background:#ea5b0c;
 }
+
+#bs_box>.detail>.detail_header{
+	margin-top:-38px;
+	margin-bottom:0px;
+	margin-left:123px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #ea5b0c transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #ea5b0c #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+/* === ms box === */
 
 #ms_box{
 	width:98px;
@@ -875,6 +907,22 @@ a#ms>.summary_time{
 	background:#e30613;
 }
 
+#ms_box>.detail>.detail_header{
+	margin-top:-38px;
+	margin-bottom:0px;
+	margin-left:255px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #e30613 transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #e30613 #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+/* === army box === */
+
 #army_box{
 	width:52px;
 }
@@ -893,6 +941,22 @@ a#army>.summary_time{
 	background:#00983a;
 }
 
+#army_box>.detail>.detail_header{
+	margin-top:-38px;
+	margin-bottom:0px;
+	margin-left:323px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #00983a transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #00983a #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+/* === ctci box === */
+
 #ctci_box{
 	width:41px;
 }
@@ -910,6 +974,22 @@ a#ctci>.summary_time{
 #ctci_box>.detail{
 	background:#273488;
 }
+
+#ctci_box>.detail>.detail_header{
+	margin-top:-38px;
+	margin-bottom:0px;
+	margin-left:375px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #273488 transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #273488 #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+/* === katdc box === */
 
 #katdc_box{
 	width:131px;
@@ -931,6 +1011,22 @@ a#katdc>.summary_time{
 	background:#82368c;
 }
 
+#katdc_box>.detail>.detail_header{
+	margin-top:-38px;
+	margin-bottom:0px;
+	margin-left:446px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #82368c transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #82368c #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+/* === pf_intern box === */
+
 #pf_intern_box{
 	width:112px;
 }
@@ -951,6 +1047,22 @@ a#pf_intern>.summary_time{
 	background:#00983a;
 }
 
+#pf_intern_box>.detail>.detail_header{
+	margin-top:-38px;
+	margin-bottom:0px;
+	margin-left:577px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #00983a transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #00983a #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+/* === pf box === */
+
 #pf_box{
 	width:132px;
 }
@@ -969,6 +1081,20 @@ a#pf>.summary_time{
 
 #pf_box>.detail{
 	background:#ea5b0c;
+}
+
+#pf_box>.detail>.detail_header{
+	margin-top:-38px;
+	margin-bottom:0px;
+	margin-left:689px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 20px 18px 10px;
+	border-color: transparent transparent #ea5b0c transparent;
+	line-height: 0px;
+	_border-color: #000000 #000000 #ea5b0c #000000;
+	_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
 }
 
 /* TODO: style the spot */
