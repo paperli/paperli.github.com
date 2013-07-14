@@ -426,6 +426,8 @@ $(function(){
 	});
 	$("#mail").hover(handin_link,handout_link);
 	
+	
+	
 	//save category items' position and size info
 	cate_items_data = {
 		"aboutme":[parseInt($("#aboutme").css("left"),10),$("#aboutme").width(),parseInt($("#aboutme").css("padding-left"),10),false],
@@ -446,6 +448,11 @@ $(function(){
 	//positioning timeline boxes
 	$("#timeline").makeFloating();
 	
+	//footer show up
+	$("#footer").children().hide().delay(1000).fadeIn(1000);
+	
+	//timeline box show up
+	$("#timeline_main").hide().delay(1500).fadeIn(1200);
 	
 	//masking of footer
 	if ($.browser.webkit){
@@ -566,7 +573,13 @@ function drawFlat(evt){
 function startMask(event){
 	//console.log("i am in");
 	//alert($(this).css("-webkit-mask-size"));
-	$(this).parent().children(".monochrome").fadeTo(300,0.5);
+	if ($(this).parent().attr("id") == "timeline_me"){
+		$(this).parent().children(".monochrome").fadeTo(300,0.1);
+	} else {
+		$(this).parent().children(".monochrome").fadeTo(300,0.5);
+	}
+	
+	
 	//$("#footer>.monochrome").fadeTo(300,0.5);
 	
 	$(this).css("backgroundImage","url(images/me-2_colour.png)");
@@ -702,9 +715,23 @@ var handOut = function(event){
 	$(this).find("#fg").attr("src","images/icon_bg2.png");
 }
 
+var isExpandedTimeline = function(){
+	//var expanded = false;
+	for (var i in timeline_boxes_pos){
+		if (timeline_boxes_pos[i][3]){
+			console.log("!!!!is expanded");
+			return true;
+		}
+	}
+	
+	return false;
+}
+
 function show_title(){
 	
 }
+
+
 
 (function($){
 	$.fn.makeFloating = function(){
@@ -730,7 +757,7 @@ function show_title(){
 				prev_width = parseInt($(this).css("width"),10);
 			}
 		});
-		console.log(timeline_boxes_pos);
+		//console.log(timeline_boxes_pos);
 	}
 	
 	$.fn.applyAction = function(){
@@ -738,7 +765,7 @@ function show_title(){
 		$(this).hover(function(){
 			//when mouse in a box...
 	
-			var delay_time = isExpanded()?200:1;
+			var delay_time = isExpandedTimeline()?200:1;
 			
 			//console.log($(this).attr("id"));
 	
@@ -748,7 +775,7 @@ function show_title(){
 			},400,"easeInOutQuint");*/
 	
 			$(this).stop(true,true).delay(delay_time).css("zIndex",99).animate({
-				height:600,
+				height:680,
 				width:800,
 				left:0,
 				paddingLeft: timeline_boxes_pos[$(this).attr("id")][0]
@@ -762,7 +789,7 @@ function show_title(){
 			
 		},
 		function(){
-			console.log("out!: "+$(this).attr("id"));
+			//console.log("out!: "+$(this).attr("id"));
 			//when mouse out a box...
 			$(this).children(".detail").fadeOut(200);
 			//console.log($(this).parent().attr("id"));

@@ -37,8 +37,13 @@ body{
 	background:#000;
 }
 
+::selection{
+	background:#00983a;
+	color:#ccc;
+}
+
 div{
-	font-family:Verdana, Geneva, sans-serif;
+	font-family:'Open Sans', Verdana, Geneva, sans-serif;
 	color:#666;
 }
 
@@ -131,6 +136,10 @@ a#linkedin:hover{
 	margin-top:-200px;
 	padding-bottom:50px;
 	position:relative;
+}
+
+#timeline_me{
+	margin-top:-300px;
 }
 
 div.colorme{
@@ -718,7 +727,7 @@ div.case_des a:hover{
 div#timeline_box{
 	width:100%;
 	background:#fff;
-	min-height:400px;
+	min-height:767px;
 	
 }
 
@@ -750,7 +759,7 @@ div#timeline_main>.hint{
 }
 
 div#timeline{
-	min-height:600px;
+	min-height:680px;
 	width:100%;
 	position:relative;
 	overflow:hidden;
@@ -780,14 +789,14 @@ div#timeline a.summary{
 
 div#timeline a.summary h3{
 	font-size:14px;
-	font-weight:bold;
+	font-weight:semi-bold;
 	margin:0;
 	padding:0 0 7px 0;
 }
 
 div#timeline a.summary h4{
 	font-size:14px;
-	font-weight:bold;
+	font-weight:semi-bold;
 	margin:0;
 }
 
@@ -808,6 +817,7 @@ div#timeline .detail{
 	color:#fff;
 	width:760px;
 	margin-top:20px;
+	min-height:300px;
 }
 
 div.summary_text{
@@ -930,7 +940,10 @@ a#ms>.summary_time{
 a#army>.summary_text{
 	width:52px;
 	height:159px;
-	background:#00983a;
+	background-color:#00983a;
+	background-image:url(../image/army.png);
+	background-repeat:no-repeat;
+	background-position:center center;
 }
 
 a#army>.summary_time{
