@@ -1,0 +1,39 @@
+html{
+	min-height:100%;
+}
+
+body{
+	margin:0;
+	padding:0;
+	min-height:100%;
+	font-family: 'Open Sans', sans-serif;
+}
+
+div.section{
+	
+}
+
+div.section>img,div.section canvas,div.section>div.description{
+	position:absolute;
+}
+
+div.section>div.description_bg{
+	
+}
+
+div.section>div.description{
+	top:400px;
+	color:#36a9e1;
+	width:100%;
+	padding:10px 40px;
+}
+
+div.section>div.description>h1{
+	font-weight:lighter;
+	
+}
+
+div.section>div.description>p{
+	font-weight:lighter;
+	line-height:120%;
+}
