@@ -29,10 +29,14 @@ div#controller a:hover{
 }
 
 div.section{
-	
+	overflow:hidden;
 }
 
-div.section>img,div.section canvas,div.section>div.description{
+div.section>img{
+	position:relative;
+}
+
+div.section canvas,div.section>div.description{
 	position:absolute;
 }
 
@@ -44,47 +48,61 @@ div.section>div.description{
 	top:400px;
 	color:#36a9e1;
 	width:100%;
-	padding:10px 40px;
 }
 
 div.section>div.description>h1{
 	font-weight:lighter;
 	margin-bottom:10px;
+	margin-left:40px;
+	margin-right:40px;
+	margin-top:10px;
 }
 
 div.section>div.description>h2{
 	margin-top:10px;
 	font-weight:lighter;
+	margin-left:40px;
+	margin-right:40px;
 	
 }
 
 div.section>div.description>p{
 	font-weight:lighter;
 	line-height:120%;
+	margin-left:40px;
+	margin-right:40px;
+	margin-bottom:10px;
 }
 
 div.case-section{
-	
+	position:relative;
+	overflow:hidden;
 }
 
 div.case-section>img.case-bg{
-	position:absolute;
+	position:relative;
 	
 }
 
 div.case-section>div.case-description{
-	top:400px;
+	position:absolute;
+	top:100px;
 	color:#36a9e1;
 	width:100%;
-	padding:10px 40px;
 }
 
 div.case-section>div.case-description>h1{
 	font-weight:lighter;
 	margin-bottom:10px;
+	margin-left:40px;
+	margin-right:40px;
+	margin-top:10px;
 }
 
 div.case-section>div.case-description>p{
 	font-weight:lighter;
 	line-height:120%;
+	margin-left:40px;
+	margin-right:40px;
+	margin-bottom:10px;
 }

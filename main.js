@@ -33,8 +33,10 @@ $(document).ready(function(){
 	
 	$("#cases").loadTemplate($("#template"),{
 		title:'Pilotfish MCBW event',
-		content:'<p><a href=\'http://www.pilotfish.eu/mcbw/\' target=\'_blank\'>http://www.pilotfish.eu/mcbw/</a></p><p>The big innovation event in Munich! Munich Creative Business Week. I designed a webpage to present speech schedule in Pilotfish booth. <b>It\'s all about time!</b> The main part of this design is the time-line and the blobs of speakers. As requesed also made the pdf version and invitation card.</p>',
-		bg_url:'images/mcbw1.png'
+		article:'<p><a href=\'http://www.pilotfish.eu/mcbw/\' target=\'_blank\'>http://www.pilotfish.eu/mcbw/</a></p><p>The big innovation event in Munich! Munich Creative Business Week. I designed a webpage to present speech schedule in Pilotfish booth. <b>It\'s all about time!</b> The main part of this design is the time-line and the blobs of speakers. As requesed also made the pdf version and invitation card.</p>',
+		//article:'The big innovation event in Munich! Munich Creative Business Week. I designed a webpage to present speech schedule in Pilotfish booth. The main part of this design is the time-line and the blobs of speakers. As requesed also made the pdf version and invitation card.',
+		bg_url:'images/mcbw1.png',
+		img_id:'bg_mcbw'
 	});
 	
 });
