@@ -13,6 +13,8 @@ $(document).ready(function(){
 		$("#about>.description_bg>canvas").css("top",-1*$("#about>.description").position().top);
 	});
 	
+	
+	//TODO: handle window resize
 	$(document).scroll(function(){
 		//console.log($(document).scrollTop());
 		
@@ -28,12 +30,11 @@ $(document).ready(function(){
 		$("#about>.description_bg").css("top",$("#about>.description").position().top);
 		$("#about>.description_bg>canvas").css("top",-1*$("#about>.description").position().top);
 	});
-	/*var c = document.getElementById("canvas_about");
-	var ctx = c.getContext("2d");
-	ctx.rect();
-	console.log("x: "+$("#about>.description").position().left);
-	console.log("y: "+$("#about>.description").position().top);
-	console.log("w: "+$("#about>.description").width());
-	console.log("h: "+$("#about>.description").height());
-	ctx.clip();*/
+	
+	$("#cases").loadTemplate($("#template"),{
+		title:'Pilotfish MCBW event',
+		content:'<p><a href=\'http://www.pilotfish.eu/mcbw/\' target=\'_blank\'>http://www.pilotfish.eu/mcbw/</a></p><p>The big innovation event in Munich! Munich Creative Business Week. I designed a webpage to present speech schedule in Pilotfish booth. <b>It\'s all about time!</b> The main part of this design is the time-line and the blobs of speakers. As requesed also made the pdf version and invitation card.</p>',
+		bg_url:'images/mcbw1.png'
+	});
+	
 });

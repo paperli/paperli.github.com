@@ -9,6 +9,25 @@ body{
 	font-family: 'Open Sans', sans-serif;
 }
 
+div#controller{
+	position:fixed;
+	bottom:10%;
+	right:10%;
+}
+
+div#controller a{
+	display:block;
+	width:44px;
+	height:44px;
+	background:#ffffff;
+}
+
+div#controller a:hover{
+	background:#cccccc;
+	transition: background 1s;
+	-webkit-transition: background 1s;
+}
+
 div.section{
 	
 }
@@ -30,10 +49,42 @@ div.section>div.description{
 
 div.section>div.description>h1{
 	font-weight:lighter;
+	margin-bottom:10px;
+}
+
+div.section>div.description>h2{
+	margin-top:10px;
+	font-weight:lighter;
 	
 }
 
 div.section>div.description>p{
+	font-weight:lighter;
+	line-height:120%;
+}
+
+div.case-section{
+	
+}
+
+div.case-section>img.case-bg{
+	position:absolute;
+	
+}
+
+div.case-section>div.case-description{
+	top:400px;
+	color:#36a9e1;
+	width:100%;
+	padding:10px 40px;
+}
+
+div.case-section>div.case-description>h1{
+	font-weight:lighter;
+	margin-bottom:10px;
+}
+
+div.case-section>div.case-description>p{
 	font-weight:lighter;
 	line-height:120%;
 }
