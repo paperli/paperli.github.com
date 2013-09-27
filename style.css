@@ -74,6 +74,10 @@ div.section>div.description>p{
 	margin-bottom:10px;
 }
 
+canvas.case-blur_canvas{
+	position:absolute;
+}
+
 div.case-section{
 	position:relative;
 	overflow:hidden;

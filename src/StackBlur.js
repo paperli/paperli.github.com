@@ -107,9 +107,9 @@ function stackBlurImage( imageID, canvasID, radius, blurAlphaChannel, mask )
 	if ( isNaN(radius) || radius < 1 ) return;
 	
 	if ( blurAlphaChannel )
-		stackBlurCanvasRGBA( canvasID, 0, 0, w, h, radius );
+		stackBlurCanvasRGBA( canvasID, 0, 0, nw, nh, radius );
 	else 
-		stackBlurCanvasRGB( canvasID, 0, 0, w, h, radius );
+		stackBlurCanvasRGB( canvasID, 0, 0, nw, nh, radius );
 }
 
 
