@@ -44,8 +44,10 @@ $(document).ready(function(){
 		//console.log($(document).scrollTop());
 		
 		var d1 = $(document).height() - $(window).height();
-		var d2 = $("#bg_about").height()-$("#about>.description_bg").height();
+		//console.log("hh: "+$("div.case-section:last-child>div.case-description_bg").height());
+		var d2 = $("#bg_about").height()+$("#cases").height()-$("div.case-section:last-child>div.case-description_bg").height();
 		$("#about>.description").css("top",$(document).scrollTop()*(d2/d1));
+		//$("#about>.description").css("top",$(document).scrollTop());
 		/*console.log($(document).height());
 		console.log($(window).height());
 		console.log(d2);
@@ -54,6 +56,14 @@ $(document).ready(function(){
 		//reset mask position
 		$("#about>.description_bg").css("top",$("#about>.description").position().top);
 		$("#about>.description_bg>canvas").css("top",-1*$("#about>.description").position().top);
+		
+		for (var key in cases_data){
+			//console.log("top"+key+": "+$("div#cases>div.case-section:nth-child("+(parseInt(key)+1)+")").offset().top);
+			$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description").css("top",$(document).scrollTop()*(d2/d1)-$("div#cases>div.case-section:nth-child("+(parseInt(key)+1)+")").offset().top);
+			$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description_bg").css("top",$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description").position().top);
+			$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description_bg>canvas.case-blur_canvas").css("top",-1*$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description").position().top);
+		}
+		
 	});
 	
 	var case_box;
@@ -68,13 +78,13 @@ $(document).ready(function(){
 		var img_id, canvas_id;
 		$(element).children("img.case-bg").load(function(){
 			img_id = $(this).attr("id");
-			console.log($(this).parent().find("canvas.case-blur_canvas").html());
+			//console.log($(this).parent().find("canvas.case-blur_canvas").html());
 			canvas_id = $(this).parent().find("canvas.case-blur_canvas").attr("id");
-			console.log(img_id+"::"+canvas_id);
+			//console.log(img_id+"::"+canvas_id);
 			stackBlurImage(img_id,canvas_id,24,true);
 			$(this).parent().children("div.case-description_bg").height($(this).parent().children("div.case-description").outerHeight());
 			//$("#about>.description_bg").css("left",$("#about>.description").position().left);
-			console.log("top:"+$(this).parent().children("div.case-description").position().top);
+			//console.log("top:"+$(this).parent().children("div.case-description").position().top);
 			$(this).parent().children("div.case-description_bg").css("top",$(this).parent().children("div.case-description").position().top);
 			$(this).parent().find("canvas.case-blur_canvas").css("top",-1*$(this).parent().children("div.case-description").position().top);
 		});

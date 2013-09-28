@@ -34,6 +34,7 @@ div.section{
 
 div.section>img{
 	position:relative;
+	margin-bottom:-5px;
 }
 
 div.section canvas,div.section>div.description{
@@ -85,7 +86,8 @@ div.case-section{
 
 div.case-section>img.case-bg{
 	position:relative;
-	
+	margin-bottom:-5px;
+	/* to fix unknown reason 5 px higher problem */
 }
 
 div.case-section>div.case-description{
