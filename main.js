@@ -23,10 +23,14 @@ var cases_data = [{
 				canvas_id:'canvas_mobiapps_app'
 			}];
 
+			var BLUR_RADIUS = 32;
+
+
+
 $(document).ready(function(){
 	
 	$("#bg_about").load(function(){
-		stackBlurImage("bg_about","canvas_about",24,true,[parseInt($("#about>.description").position().left),parseInt($("#about>.description").position().top),parseInt($("#about>.description").width()),parseInt($("#about>.description").height())]);
+		stackBlurImage("bg_about","canvas_about",BLUR_RADIUS,true,[parseInt($("#about>.description").position().left),parseInt($("#about>.description").position().top),parseInt($("#about>.description").width()),parseInt($("#about>.description").height())]);
 		console.log("x: "+$("#about>.description").position().left);
 		console.log("y: "+$("#about>.description").position().top);
 		console.log("w: "+$("#about>.description").width());
@@ -60,8 +64,17 @@ $(document).ready(function(){
 		for (var key in cases_data){
 			//console.log("top"+key+": "+$("div#cases>div.case-section:nth-child("+(parseInt(key)+1)+")").offset().top);
 			$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description").css("top",$(document).scrollTop()*(d2/d1)-$("div#cases>div.case-section:nth-child("+(parseInt(key)+1)+")").offset().top);
-			$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description_bg").css("top",$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description").position().top);
-			$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description_bg>canvas.case-blur_canvas").css("top",-1*$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description").position().top);
+			$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description_bg").css("top",parseInt($("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description").css("top")));
+			$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description_bg>canvas.case-blur_canvas").css("top",-1*parseInt($("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description").css("top")));
+			
+			//hide/appear button margin: top:20 left:48
+			var btn_top = parseInt($("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description").css("top"))+20;
+			console.log("button top@"+key+" shall be "+btn_top);
+			$("div.case-section:nth-child("+(parseInt(key)+1)+")>a.btnAppear").css("top",btn_top).css("right",48);
+			
+			console.log("top@"+key+" is "+$("div.case-section:nth-child("+(parseInt(key)+1)+")>div.case-description").css("top"));
+			//console.log($("div.case-section:nth-child("+(parseInt(key)+1)+")>a.btnAppear").html());
+													
 		}
 		
 	});
@@ -81,12 +94,26 @@ $(document).ready(function(){
 			//console.log($(this).parent().find("canvas.case-blur_canvas").html());
 			canvas_id = $(this).parent().find("canvas.case-blur_canvas").attr("id");
 			//console.log(img_id+"::"+canvas_id);
-			stackBlurImage(img_id,canvas_id,24,true);
+			stackBlurImage(img_id,canvas_id,BLUR_RADIUS,true);
 			$(this).parent().children("div.case-description_bg").height($(this).parent().children("div.case-description").outerHeight());
 			//$("#about>.description_bg").css("left",$("#about>.description").position().left);
 			//console.log("top:"+$(this).parent().children("div.case-description").position().top);
 			$(this).parent().children("div.case-description_bg").css("top",$(this).parent().children("div.case-description").position().top);
 			$(this).parent().find("canvas.case-blur_canvas").css("top",-1*$(this).parent().children("div.case-description").position().top);
+		});
+		
+		$(element).find("a.btnHide").click(function(){
+			$(this).parent().parent().children("div.case-description_bg").fadeOut();
+			$(this).parent().fadeOut();
+			
+			//place appear button
+			$(this).parent().parent().children("a.btnAppear").fadeIn();
+		});
+		
+		$(element).find("a.btnAppear").click(function(){
+			$(this).fadeOut();
+			$(this).parent().children("div.case-description").fadeIn();
+			$(this).parent().children("div.case-description_bg").fadeIn();
 		});
 	});
 	

@@ -7,12 +7,24 @@ body{
 	padding:0;
 	min-height:100%;
 	font-family: 'Open Sans', sans-serif;
+	font-size:16px;
+}
+
+::selection{
+	background:#18ae6f;
+	color:#fff;
+}
+
+::-moz-selection{
+	background:#18ae6f;
+	color:#fff;
 }
 
 div#controller{
 	position:fixed;
 	bottom:10%;
 	right:10%;
+	display:none;
 }
 
 div#controller a{
@@ -46,7 +58,7 @@ div.section>div.description_bg{
 }
 
 div.section>div.description{
-	top:400px;
+	top:0;
 	color:#36a9e1;
 	width:100%;
 }
@@ -54,25 +66,42 @@ div.section>div.description{
 div.section>div.description>h1{
 	font-weight:lighter;
 	margin-bottom:10px;
-	margin-left:40px;
-	margin-right:40px;
+	margin-left:auto;
+	margin-right:auto;
 	margin-top:10px;
+	font-family: 'Lobster Two', cursive;
+	font-style:italic;
+	font-size:5em;
+	width:100%;
+	max-width:1024px;
+	padding-left:40px;
+	padding:right:40px;
+	min-width:600px;
 }
 
 div.section>div.description>h2{
 	margin-top:10px;
 	font-weight:lighter;
-	margin-left:40px;
-	margin-right:40px;
-	
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
+	max-width:1024px;
+	padding-left:40px;
+	padding:right:40px;
+	min-width:600px;
 }
 
 div.section>div.description>p{
 	font-weight:lighter;
-	line-height:120%;
-	margin-left:40px;
-	margin-right:40px;
+	line-height:140%;
+	margin-left:auto;
+	margin-right:auto;
 	margin-bottom:10px;
+	width:100%;
+	max-width:1024px;
+	padding-left:40px;
+	padding:right:40px;
+	min-width:600px;
 }
 
 canvas.case-blur_canvas{
@@ -97,18 +126,109 @@ div.case-section>div.case-description{
 	width:100%;
 }
 
+div.case-section>div.case-description>p>a{
+	font-weight:lighter;
+	color:#36a9e1;
+}
+
+div.case-section>div.case-description>p>a:hover{
+	color:#156b95;
+	text-decoration:none;
+	transition: color 1s;
+	-webkit-transition: color 1s; /* Safari */
+}
+
 div.case-section>div.case-description>h1{
 	font-weight:lighter;
 	margin-bottom:10px;
-	margin-left:40px;
-	margin-right:40px;
-	margin-top:10px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+	font-family: 'Lobster Two', cursive;
+	font-style:italic;
+	font-size:3em;
+	width:100%;
+	max-width:1024px;
+	padding-left:40px;
+	padding:right:40px;
+	min-width:600px;
 }
 
 div.case-section>div.case-description>p{
 	font-weight:lighter;
-	line-height:120%;
-	margin-left:40px;
-	margin-right:40px;
-	margin-bottom:10px;
+	line-height:140%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:20px;
+	width:100%;
+	max-width:1024px;
+	padding-left:40px;
+	padding:right:40px;
+	min-width:600px;
+}
+
+a.btnHide{
+	background:url("images/btnHide.png") no-repeat center center;
+	display:block;
+	width:52px;
+	height:52px;
+	position:absolute;
+	top:20px;
+	right:48px;
+	
+	transition: all 1s ease-in-out;
+	-webkit-transition: all 1s ease-in-out; /* Safari */
+	
+	transform: rotate(-1800deg);
+	transform-origin:50% 50%;
+	-ms-transform: rotate(-1800deg); /* IE 9 */
+	-ms-transform-origin:50% 50%; /* IE 9 */
+	-webkit-transform: rotate(-1800deg); /* Safari and Chrome */
+	-webkit-transform-origin:50% 50%; /* Safari and Chrome */
+}
+
+a.btnHide:hover{
+	transition: all 5s ease-in-out;
+	-webkit-transition: all 5s ease-in-out; /* Safari */
+	
+	transform: rotate(1800deg);
+	transform-origin:50% 50%;
+	-ms-transform: rotate(1800deg); /* IE 9 */
+	-ms-transform-origin:50% 50%; /* IE 9 */
+	-webkit-transform: rotate(1800deg); /* Safari and Chrome */
+	-webkit-transform-origin:50% 50%; /* Safari and Chrome */	
+	
+}
+
+a.btnAppear{
+	background:url("images/btnAppear.png") no-repeat center center;
+	display:none;
+	width:52px;
+	height:52px;
+	position:absolute;
+	top:20px;
+	right:48px;
+	
+	transition: all 1s ease-in-out, top 0.5s ease-in-out;
+	-webkit-transition: all 1s ease-in-out, top 0.5s ease-in-out; /* Safari */
+	
+	transform: rotate(1800deg);
+	transform-origin:50% 50%;
+	-ms-transform: rotate(1800deg); /* IE 9 */
+	-ms-transform-origin:50% 50%; /* IE 9 */
+	-webkit-transform: rotate(1800deg); /* Safari and Chrome */
+	-webkit-transform-origin:50% 50%; /* Safari and Chrome */
+}
+
+a.btnAppear:hover{
+	transition: all 5s ease-in-out, top 0.5s ease-in-out;
+	-webkit-transition: all 5s ease-in-out, top 0.5s ease-in-out; /* Safari */
+	
+	transform: rotate(-1800deg);
+	transform-origin:50% 50%;
+	-ms-transform: rotate(-1800deg); /* IE 9 */
+	-ms-transform-origin:50% 50%; /* IE 9 */
+	-webkit-transform: rotate(-1800deg); /* Safari and Chrome */
+	-webkit-transform-origin:50% 50%; /* Safari and Chrome */	
+	
 }
