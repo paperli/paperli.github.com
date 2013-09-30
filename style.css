@@ -115,10 +115,24 @@ div.case-section{
 	overflow:hidden;
 }
 
-div.case-section>img.case-bg{
+div.case-section img.case-bg{
+	position:absolute;
+	margin-bottom:-5px;
+	top:0;
+	/* to fix unknown reason 5 px higher problem */
+}
+
+div.case-section img.case-bg:first-child{
 	position:relative;
 	margin-bottom:-5px;
 	/* to fix unknown reason 5 px higher problem */
+}
+
+div.case-section>div.img-box{
+	position:relative;
+	width:100%;
+	height:auto;
+	overflow:hidden;
 }
 
 div.case-section>div.case-description{
@@ -235,4 +249,26 @@ a.btnAppear:hover{
 	-webkit-transform: rotate(-1800deg); /* Safari and Chrome */
 	-webkit-transform-origin:50% 50%; /* Safari and Chrome */	
 	
+}
+
+a.btnPrev{
+	background:url("images/btnPrev.png") no-repeat center center;
+	display:block;
+	width:52px;
+	height:80px;
+	position:absolute;
+	left:20px;
+	top:50%;
+	margin-top:-40px;
+}
+
+a.btnNext{
+	background:url("images/btnNext.png") no-repeat center center;
+	display:block;
+	width:52px;
+	height:80px;
+	position:absolute;
+	right:20px;
+	top:50%;
+	margin-top:-40px;
 }
