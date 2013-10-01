@@ -30,12 +30,14 @@ var pic_width;
 
 var at_pos = [];
 
+var resize_timer;
+
 $(document).ready(function(){
 	
 	pic_width = $(window).width();
 	
 	$("#bg_about").load(function(){
-		stackBlurImage("bg_about","canvas_about",BLUR_RADIUS,true,[parseInt($("#about>.description").position().left),parseInt($("#about>.description").position().top),parseInt($("#about>.description").width()),parseInt($("#about>.description").height())]);
+		stackBlurImage("bg_about","canvas_about",BLUR_RADIUS,true);
 		console.log("x: "+$("#about>.description").position().left);
 		console.log("y: "+$("#about>.description").position().top);
 		console.log("w: "+$("#about>.description").width());
@@ -182,6 +184,55 @@ $(document).ready(function(){
 	
 	//$("div.case-section").children("img.case-bg").each()
 	
-	
+	//handle window resizing
+	$(window).resize(function(){
+		//need pause for performance?
+		$("#about>.description_bg").hide();
+		$("#about>.description").hide();
+		
+		$("#cases .case-description").hide();
+		$("#cases .case-description_bg").hide();
+		
+		//re-position and resize blur bar
+		$("#about>.description_bg").height($("#about>.description").outerHeight());
+		//$("#about>.description_bg").css("left",$("#about>.description").position().left);
+		$("#about>.description_bg").css("top",parseInt($("#about>.description").css("top")));
+		$("#about>.description_bg>canvas").css("top",-1*parseInt($("#about>.description").css("top")));
+		
+		$("#cases>div.case-section").each(function(key,element){
+			//re-blur
+			//img_id = $(element).find("img.case-bg:nth-child("+(at_pos[key]+1)+")").attr("id");
+			//canvas_id = $(element).find("canvas.case-blur_canvas").attr("id");
+			//$("#"+canvas_id).fadeOut("fast").fadeIn("fast");
+			//stackBlurImage(img_id,canvas_id,BLUR_RADIUS,true);
+			
+			//re-position and resize blur bar
+			$(element).children("div.case-description_bg").height($(element).children("div.case-description").outerHeight());
+			$(element).children("div.case-description_bg").css("top",parseInt($(element).children("div.case-description").css("top")));
+			$(element).find("canvas.case-blur_canvas").css("top",-1*parseInt($(element).children("div.case-description").css("top")));
+		});
+		
+		clearTimeout(resize_timer);
+		//re-blur the bar after 200ms
+		resize_timer = setTimeout(resizeEnd, 50);
+		
+	});
 	
 });
+
+function resizeEnd(){
+	//re-blur
+	stackBlurImage("bg_about","canvas_about",BLUR_RADIUS,true);
+	$("#cases>div.case-section").each(function(key,element){
+		//re-blur
+		img_id = $(element).find("img.case-bg:nth-child("+(at_pos[key]+1)+")").attr("id");
+		canvas_id = $(element).find("canvas.case-blur_canvas").attr("id");
+		stackBlurImage(img_id,canvas_id,BLUR_RADIUS,true);
+	});
+	
+	$("#about>.description_bg").fadeIn();
+	$("#about>.description").fadeIn();
+	
+	$("#cases .case-description").fadeIn();
+	$("#cases .case-description_bg").fadeIn();
+}
