@@ -49,8 +49,6 @@ $(document).ready(function(){
 		$("#about>.description_bg>canvas").css("top",-1*$("#about>.description").position().top);
 	});
 	
-	
-	//TODO: handle window resize
 	$(document).scroll(function(){
 		//console.log($(document).scrollTop());
 		
@@ -67,6 +65,12 @@ $(document).ready(function(){
 		//reset mask position
 		$("#about>.description_bg").css("top",$("#about>.description").position().top);
 		$("#about>.description_bg>canvas").css("top",-1*$("#about>.description").position().top);
+		
+		if (parseInt($("#about>.description").css("top"))>$("#about").height()+100){
+			$("#about>.description").hide();
+		} else {
+			$("#about>.description").show();
+		}
 		
 		for (var key in cases_data){
 			//console.log("top"+key+": "+$("div#cases>div.case-section:nth-child("+(parseInt(key)+1)+")").offset().top);
@@ -221,6 +225,7 @@ $(document).ready(function(){
 });
 
 function resizeEnd(){
+	
 	//re-blur
 	stackBlurImage("bg_about","canvas_about",BLUR_RADIUS,true);
 	$("#cases>div.case-section").each(function(key,element){

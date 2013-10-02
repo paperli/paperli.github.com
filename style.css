@@ -63,27 +63,31 @@ div.section>div.description{
 	width:100%;
 }
 
-div.section>div.description>h1{
-	font-weight:lighter;
-	margin-bottom:44px;
+div.section>div.description>#header{
 	margin-left:auto;
 	margin-right:auto;
-	margin-top:10px;
+	width:auto;
+	max-width:1024px;
+	min-width:600px;
+	overflow:auto;
+}
+
+div.section>div.description h1{
+	font-weight:lighter;
+	margin-bottom:44px;
+	margin-top:20px;
 	font-family: 'Lobster Two', cursive;
 	font-style:italic;
 	font-size:5em;
-	width:auto;
-	max-width:1024px;
 	padding-left:40px;
 	padding-right:40px;
-	min-width:600px;
+	float:left;
 }
 
-div.section>div.description>#links{
-	position:absolute;
-	left:480px;
-	top:40px;
+div.section>div.description #links{
+	float:left;
 	overflow:hidden;
+	margin-top:44px;
 }
 
 a#cv, a#mail, a#twitter, a#linkedin, a#blog{
@@ -136,7 +140,7 @@ div.section>div.description>#portrait{
 	max-width:1024px;
 	min-height:80px;
 	min-width:600px;
-	background:url("images/portrait-color.png") no-repeat left center;
+	background:url("images/portrait-color.png") no-repeat 40px center;
 }
 
 div.section>div.description h2{
@@ -145,7 +149,7 @@ div.section>div.description h2{
 	font-weight:lighter;
 	line-height:140%;
 	font-size:1em;
-	margin-left:100px;
+	margin-left:140px;
 }
 
 div.section>div.description>p{
