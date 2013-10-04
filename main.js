@@ -2,7 +2,7 @@ var cases_data = [{
 		title:'Pilotfish MCBW event',
 		article:'<p><a href=\'http://www.pilotfish.eu/mcbw/\' target=\'_blank\'>http://www.pilotfish.eu/mcbw/</a></p><p>The big innovation event in Munich! Munich Creative Business Week. I designed a webpage to present speech schedule in Pilotfish booth. <b>It\'s all about time!</b> The main part of this design is the time-line and the blobs of speakers. As requesed also made the pdf version and invitation card.</p>',
 		//article:'The big innovation event in Munich! Munich Creative Business Week. I designed a webpage to present speech schedule in Pilotfish booth. The main part of this design is the time-line and the blobs of speakers. As requesed also made the pdf version and invitation card.',
-		bg_url:['images/mcbw1.png','images/mcbw2.png','images/mcbw4.png'],
+		bg_url:['images/mcbw.png','images/mcbw-2.png','images/mcbw-3.png'],
 		img_id:'bg_mcbw',
 		canvas_id:'canvas_mcbw'
 	},
@@ -147,16 +147,31 @@ $(document).ready(function(){
 			//next pic
 			//console.log($(this).parent().children("div.img-box"));
 			//$(this).parent().children("div.img-box").scrollLeft($(this).parent().children("div.img-box").scrollLeft()+$(this).parent().children("div.img-box").width());
-			$(this).parent().children("div.img-box").animate({scrollLeft:"+="+$(this).parent().children("div.img-box").width()});
+			
+			canvas_id = $(element).find("canvas.case-blur_canvas").attr("id");
+			description_box = $(element).find("div.case-description");
+			
+			$(this).parent().children("div.img-box").animate({scrollLeft:"+="+$(this).parent().children("div.img-box").width()},{
+				duration:500,
+				complete:function(){
+					//console.log("key is "+at_pos[key]);
+					if (at_pos[key] < cases_data[key]["bg_url"].length){
+						//TODO:fix jump after blur problem
+						img_id = $(element).find("img.case-bg:nth-child("+(at_pos[key]+1)+")").attr("id");
+						stackBlurImage(img_id,canvas_id,BLUR_RADIUS,true);
+						$("#"+canvas_id).fadeIn("fast");
+						$(description_box).fadeIn("fast");
+					}
+				}
+			});
 			at_pos[key]+=1;
 			if (at_pos[key] >= cases_data[key]["bg_url"].length){
 				at_pos[key] = cases_data[key]["bg_url"].length-1;
 			} else {
 				//have to re-blur new pic
-				img_id = $(element).find("img.case-bg:nth-child("+(at_pos[key]+1)+")").attr("id");
-				canvas_id = $(element).find("canvas.case-blur_canvas").attr("id");
-				$("#"+canvas_id).fadeOut("fast").fadeIn("fast");
-				stackBlurImage(img_id,canvas_id,BLUR_RADIUS,true);
+				
+				$(description_box).fadeOut("fast");
+				$("#"+canvas_id).fadeOut("fast");
 			}
 			
 		});
@@ -164,16 +179,31 @@ $(document).ready(function(){
 		$(element).find("a.btnPrev").click(function(){
 			//prev pic
 			//$(this).parent().children("div.img-box").scrollLeft($(this).parent().children("div.img-box").scrollLeft()-$(this).parent().children("div.img-box").width());
-			$(this).parent().children("div.img-box").animate({scrollLeft:"-="+$(this).parent().children("div.img-box").width()});
+			
+			canvas_id = $(element).find("canvas.case-blur_canvas").attr("id");
+			description_box = $(element).find("div.case-description");
+			
+			$(this).parent().children("div.img-box").animate({scrollLeft:"-="+$(this).parent().children("div.img-box").width()},{
+				duration:500,
+				complete:function(){
+					//console.log("key is "+at_pos[key]);
+					if (at_pos[key] > 0){
+						//TODO:fix jump after blur problem
+						img_id = $(element).find("img.case-bg:nth-child("+(at_pos[key]+1)+")").attr("id");
+						stackBlurImage(img_id,canvas_id,BLUR_RADIUS,true);
+						$("#"+canvas_id).fadeIn("fast");
+						$(description_box).fadeIn("fast");
+					}
+				}
+			});
 			at_pos[key]-=1;
 			if (at_pos[key] < 0){
 				at_pos[key] = 0;
 			} else {
 				//have to re-blur new pic
-				img_id = $(element).find("img.case-bg:nth-child("+(at_pos[key]+1)+")").attr("id");
-				canvas_id = $(element).find("canvas.case-blur_canvas").attr("id");
-				$("#"+canvas_id).fadeOut("fast").fadeIn("fast");
-				stackBlurImage(img_id,canvas_id,BLUR_RADIUS,true);
+				$(description_box).fadeOut("fast");
+				$("#"+canvas_id).fadeOut("fast");
+				
 			}
 		});
 	});
