@@ -113,7 +113,7 @@ $(document).ready(function(){
 		
 		
 		//blur the description bg
-		var img_id, canvas_id;
+		var img_id, canvas_id, is_hide;
 		$(element).find("img.case-bg:nth-child(1)").load(function(){
 			img_id = $(this).attr("id");
 			//console.log($(this).parent().find("canvas.case-blur_canvas").html());
@@ -150,6 +150,7 @@ $(document).ready(function(){
 			
 			canvas_id = $(element).find("canvas.case-blur_canvas").attr("id");
 			description_box = $(element).find("div.case-description");
+			is_not_hide = $(description_box).is(":visible");
 			
 			$(this).parent().children("div.img-box").animate({scrollLeft:"+="+$(this).parent().children("div.img-box").width()},{
 				duration:500,
@@ -159,8 +160,11 @@ $(document).ready(function(){
 						//TODO:fix jump after blur problem
 						img_id = $(element).find("img.case-bg:nth-child("+(at_pos[key]+1)+")").attr("id");
 						stackBlurImage(img_id,canvas_id,BLUR_RADIUS,true);
-						$("#"+canvas_id).fadeIn("fast");
-						$(description_box).fadeIn("fast");
+						if (is_not_hide){
+							$("#"+canvas_id).fadeIn("fast");
+							$(description_box).fadeIn("fast");
+						}
+						
 					}
 				}
 			});
@@ -170,8 +174,12 @@ $(document).ready(function(){
 			} else {
 				//have to re-blur new pic
 				
-				$(description_box).fadeOut("fast");
-				$("#"+canvas_id).fadeOut("fast");
+				if (is_not_hide){
+					$(description_box).fadeOut("fast");
+					$("#"+canvas_id).fadeOut("fast");
+				}
+				
+				
 			}
 			
 		});
@@ -182,17 +190,21 @@ $(document).ready(function(){
 			
 			canvas_id = $(element).find("canvas.case-blur_canvas").attr("id");
 			description_box = $(element).find("div.case-description");
+			is_not_hide = $(description_box).is(":visible");
 			
 			$(this).parent().children("div.img-box").animate({scrollLeft:"-="+$(this).parent().children("div.img-box").width()},{
 				duration:500,
 				complete:function(){
 					//console.log("key is "+at_pos[key]);
-					if (at_pos[key] > 0){
+					if (at_pos[key] >= 0){
 						//TODO:fix jump after blur problem
 						img_id = $(element).find("img.case-bg:nth-child("+(at_pos[key]+1)+")").attr("id");
 						stackBlurImage(img_id,canvas_id,BLUR_RADIUS,true);
-						$("#"+canvas_id).fadeIn("fast");
-						$(description_box).fadeIn("fast");
+						if (is_not_hide){
+							$("#"+canvas_id).fadeIn("fast");
+							$(description_box).fadeIn("fast");
+						}
+						
 					}
 				}
 			});
@@ -201,8 +213,11 @@ $(document).ready(function(){
 				at_pos[key] = 0;
 			} else {
 				//have to re-blur new pic
-				$(description_box).fadeOut("fast");
-				$("#"+canvas_id).fadeOut("fast");
+				if (is_not_hide){
+					$(description_box).fadeOut("fast");
+					$("#"+canvas_id).fadeOut("fast");
+				}
+				
 				
 			}
 		});
