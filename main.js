@@ -21,6 +21,13 @@ var cases_data = [{
 				bg_url:['images/mobiapps1.png','images/mobiapps2.png','images/mobiapps3.png','images/mobiapps4.png'],
 				img_id:'bg_mobiapps_app',
 				canvas_id:'canvas_mobiapps_app'
+			},
+		{
+				title:'DDD',
+				article:'<p>We count for Diabetics!</p><p>Diabetics count after dining for blood sugar balance. It may be simple counting for adults, but for kid it\'s the problem.</p><p>I was joining the team in pilotfish for solving this matter. The project contained two parts: iPhone Case with weight scale and the app to count the sugar contained. I made the wired scale for food weight and passed in cloud. The app count the sugar quantity based on online database and the food weight in cloud. The demo kit proved the concept and gain the success in the in-house design competition.</p>',
+				bg_url:['images/ddd3.png','images/ddd2.png','images/ddd1.png','images/ddd_3.png'],
+				img_id:'bg_ddd',
+				canvas_id:'canvas_ddd'
 			}];
 
 var BLUR_RADIUS = 32;
