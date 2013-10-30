@@ -1,0 +1,3 @@
+mate index.html *.js *.css
+#mate "$1/index.html" "$1/*.js" "$1/*.css"
+#echo "$1/index.html"
