@@ -23,6 +23,14 @@ var cases_data = [
 		img_id:'bg_mcbw',
 		canvas_id:'canvas_mcbw'
 	},
+	{
+			title:'Pilotfish Mobile Website',
+			article:'<p><a href=\'http://www.pilotfish.eu/\' target=\'_blank\'>http://www.pilotfish.eu/</a></p><p>Pilotfish gose to mobile!</p><p>Pilotfish was reforming official website to meet fashion web spec, aka. no flash, go mobile. I was in the team to redesign the flow/wireframe of new offical website (include desktop and mobile version). I made bunch of demo units in HTML to present flow, transition and movement to developer outsourcing.</p><p>The website was announced in end 2012.</p>',
+			//article:'The big innovation event in Munich! Munich Creative Business Week. I designed a webpage to present speech schedule in Pilotfish booth. The main part of this design is the time-line and the blobs of speakers. As requesed also made the pdf version and invitation card.',
+			bg_url:['images/pf_mobile1.png','images/pf_mobile2.png','images/pf_mobile3.png','images/mcbw4.png'],
+			img_id:'bg_pf_mobile',
+			canvas_id:'canvas_pf_mobile'
+		},
 	
 	{
 			title:'MobiApps Website',
