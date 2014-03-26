@@ -1,7 +1,14 @@
 var cases_data = [
 {
+		title:'Qute',
+		article:'<p><a href=\'https://itunes.apple.com/vc/app/qute-qr-code-2d-barcode-scanner/id828181167?mt=8\' target=\'_blank\'>@App Store</a></p><p>Qute is not just the QR code scanner. It also brings the QR code online. People can share and read the comments about the QR code from the world.</p><p>The idea was from the scenarios from street. Image that you saw a QR code on the street. You realized it\'s shit only when you already visit through it. With Qute people can see the comments from the world about the QR code and you decide to continue or abort the visit.</p><p>Beyond that, Qute keeps the scan picture and displays it as part of result. Not only for the visual, but also for the memory. People may recall where the QR code is by the surrending of the QR code in the picture.</p>',
+		bg_url:['images/qute1.png','images/qute2.png','images/qute3.png','images/qute4.png','images/qute5.png'],
+		img_id:'bg_qute',
+		canvas_id:'canvas_qute'
+	},
+{
 		title:'GamerChat',
-		article:'<p><a href=\'http://www.themobiapps.com\' target=\'_blank\'>http://www.themobiapps.com/</a></p><p>People shall be able to talk at any time, any where, even they are offline of the online game.</p><p>GamerCaht is an app to let Gamers to continue talking on the go. The app inherit the nature of online game: Multi-role for single person, Guild(Group) communication, and Fun-factor passcode. The piano was designed to play the passcode to integrate the joy in practice. The multi-role system was designed to bring gamer\'s experience into chatting.</p>',
+		article:'<p><a href=\'https://itunes.apple.com/us/app/gong-hui-tong/id731810260?ls=1&mt=8\' target=\'_blank\'>@App Store</a></p><p>People shall be able to talk at any time, any where, even they are offline of the online game.</p><p>GamerCaht is an app to let Gamers to continue talking on the go. The app inherit the nature of online game: Multi-role for single person, Guild(Group) communication, and Fun-factor passcode. The piano was designed to play the passcode to integrate the joy in practice. The multi-role system was designed to bring gamer\'s experience into chatting.</p>',
 		//article:'The big innovation event in Munich! Munich Creative Business Week. I designed a webpage to present speech schedule in Pilotfish booth. The main part of this design is the time-line and the blobs of speakers. As requesed also made the pdf version and invitation card.',
 		bg_url:['images/gamerchat3.png','images/gamerchat2.png','images/gamerchat4.png','images/gamerchat5.png','images/gamerchat7.png'],
 		img_id:'bg_gamerchat',
