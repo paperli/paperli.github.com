@@ -1,0 +1,148 @@
+body{
+	margin:0;
+	padding:0;
+	font-family: 'Open Sans', sans-serif;
+	font-size:16px;
+	background:#000000;
+}
+
+div#content_box{
+	width:100%;
+	height:auto;
+	min-height:640px;
+	min-width:800px;
+	background:url(images/big_image1.png) center center;
+	background-size:100% auto;
+	overflow:hidden;
+}
+
+div#content_box p{
+	margin:0;
+	padding-top:30px;
+	padding-bottom:20px;
+	color:#000000;
+	font-size:2em;
+	width:382px;
+	font-weight:300;
+	margin-left:374px;
+	
+}
+
+div#content_box p>span.highlight{
+	font-weight:700;
+	color:#9857A7;
+}
+
+div#content_box>div.banner{
+	background:url(images/bg_banner.png) center center;
+	top:330px;
+	position:relative;
+	bottom:70px;
+}
+
+div#content_box>div.banner>div.content{
+	margin:0 auto;
+	width:800px;
+	position:relative;
+}
+
+div#content_box>div.banner a.appstore{
+	display:block;
+	width:135px;
+	height:40px;
+	background:url(images/app_store_badge.png) no-repeat;
+	padding-bottom:30px;
+	margin-left:374px;
+}
+
+div#content_box>div.banner div#screenshot{
+	width:300px;
+	height:576px;
+	background:url(images/qute.png) no-repeat;
+	position:absolute;
+	top:-258px;
+	left:72px;
+}
+
+div#contact_box{
+	width:100%;
+	height:auto;
+	min-height:240px;
+	background:url(images/big_image2.png) 50% 60%;
+	background-size:100%;
+	position:relative;
+}
+
+div#contact_box>div.overlay{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	background:url(images/bg_banner.png) center center;
+}
+
+div#contact_box>div.content{
+	width:800px;
+	margin:0 auto;
+	position:relative;
+}
+
+div#contact_box>div.content>ul{
+	margin:0;
+	padding-left:36px;
+	list-style:none;
+	padding-top:28px;
+}
+
+div#contact_box>div.content>ul>li{
+	margin-bottom:16px;
+}
+
+div#contact_box>div.content>ul>li>a{
+	font-size:32px;
+	text-decoration: none;
+	border: none;
+	font-weight: 700;
+}
+
+div#contact_box>div.content>ul>li#twitter>a{
+	color:#9857A7;
+	background:url('images/twitter_bird.png') no-repeat right center;
+	padding-right:50px;
+	-webkit-transition:all 0.2s linear;
+	-o-transition:all 0.2s linear;
+	-moz-transition:all 0.2s linear;
+	transition:all 0.2s linear;
+}
+
+div#contact_box>div.content>ul>li#twitter>a:hover{
+	color:#ffffff;
+	background:url('images/twitter_bird_highlighted.png') #9857A7 no-repeat right 4px;
+}
+
+div#contact_box>div.content>ul>li#facebook>a{
+	color:#68A787;
+	-webkit-transition:all 0.2s linear;
+	-o-transition:all 0.2s linear;
+	-moz-transition:all 0.2s linear;
+	transition:all 0.2s linear;
+}
+
+div#contact_box>div.content>ul>li#facebook>a:hover{
+	color:#ffffff;
+	background:#68A787;
+}
+
+div#contact_box>div.content>ul>li#paperworkstudio>a{
+	color:#D9B166;
+	-webkit-transition:all 0.2s linear;
+	-o-transition:all 0.2s linear;
+	-moz-transition:all 0.2s linear;
+	transition:all 0.2s linear;
+}
+
+div#contact_box>div.content>ul>li#paperworkstudio>a:hover{
+	color:#ffffff;
+	background:#D9B166;
+}
