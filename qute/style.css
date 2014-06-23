@@ -11,9 +11,17 @@ div#content_box{
 	height:auto;
 	min-height:640px;
 	min-width:800px;
+	overflow:hidden;
+}
+
+div.bg1, div.bg2{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
 	background:url(images/big_image1.png) center center;
 	background-size:100% auto;
-	overflow:hidden;
 }
 
 div#content_box p{
