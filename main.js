@@ -76,6 +76,13 @@ var IS_MOBILE = false;
 
 $(document).ready(function(){
 	
+	//browser check
+	outdatedBrowser({
+	       bgColor: '#f25648',
+	       color: '#ffffff',
+	       lowerThan: 'transform'
+	});
+	
 	//alert(WURFL.is_mobile);
 	//alert(WURFL.form_factor);
 	
