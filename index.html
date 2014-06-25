@@ -5,6 +5,7 @@
 <link href='http://fonts.googleapis.com/css?family=Lobster|Open+Sans:400italic,400,300,600,700|Open+Sans+Condensed:300|Lobster+Two:400,700' rel='stylesheet' type='text/css'>
 <link rel="shortcut icon" href="https://lh3.googleusercontent.com/-FidufjOqED0/T1BTGrzc6JI/AAAAAAAAKZ0/AhlxxJPql9c/s800/psign.gif">
 <link href="style.css" rel="stylesheet" media="all" />
+<link rel="stylesheet" type="text/css" href="src/outdatedBrowser.min.css" />
 <title>paperworkStudio</title>
 <script type="text/javascript">
 
@@ -26,6 +27,7 @@
 <script src="src/detectmobilebrowser.js"></script>
 <!-- WURFL to detect mobile device -->
 <script type='text/javascript' src="//wurfl.io/wurfl.js"></script>
+<script src="src/outdatedBrowser.min.js"></script>
 <script src="main.js" type="text/javascript"></script>
 
 </head>
@@ -102,5 +104,13 @@
 	src="http://c.statcounter.com/6568967/0/4ee2a6bf/1/"
 	alt="web analytics"></a></div></noscript>
 	<!-- End of StatCounter Code for Default Guide -->
+	
+	<!-- Srart browser check -->
+	<div id="outdated">
+	     <h6>Your browser is out-of-date!</h6>
+	     <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+	     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+	</div>
+	<!-- End browser check -->
 </body>
 </html>
