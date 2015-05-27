@@ -1,5 +1,19 @@
 var cases_data = [
 {
+		title:'Speakers Association',
+		article:'<p>WEB | DESING | CONCEPT</p><p>The web design concept for the refinment of the Canada-based speakers profession, Speakers Association.</p>',
+		bg_url:['images/saweb1.jpg','images/saweb2.jpg','images/saweb3.jpg'],
+		img_id:'bg_jlr',
+		canvas_id:'canvas_jlr'
+	},
+{
+		title:'Land Rover China',
+		article:'<p>iPhone/Android app | DESING | PRODUCTION</p><p>Land Rover china was like to improve their connection with end customers. As lead designer in MobiApps, I and the team developed the app and the system to help engaging end-customer to the brand and dealers.</p><p>The system consists of two apps, customer app and dealer app, as frond-end interaction medium.</p><p>The car holder uses the customer app to inspect car information, read messages from manufacture, book service, feedback and, inspiringly, instant talk with Service Agents.</p><p>Dealer app is designed for service agents to manage car-holder’s bookings and talk to customers with in-app instant messenger.</p>',
+		bg_url:['images/jlr1.jpg','images/jlr2.jpg','images/jlr3.jpg','images/jlr4.jpg','images/jlr5.jpg'],
+		img_id:'bg_jlr',
+		canvas_id:'canvas_jlr'
+	},
+{
 		title:'Qute',
 		article:'<p><a href=\'https://itunes.apple.com/vc/app/qute-qr-code-2d-barcode-scanner/id828181167?mt=8\' target=\'_blank\'>@App Store</a></p><p>Qute is not just the QR code scanner. It also brings the QR code online. People can share and read the comments about the QR code from the world.</p><p>The idea was from the scenarios from street. Image that you saw a QR code on the street. You realized it\'s shit only when you already visit through it. With Qute people can see the comments from the world about the QR code and you decide to continue or abort the visit.</p><p>Beyond that, Qute keeps the scan picture and displays it as part of result. Not only for the visual, but also for the memory. People may recall where the QR code is by the surrending of the QR code in the picture.</p>',
 		bg_url:['images/qute1.jpg','images/qute2.jpg','images/qute3.jpg','images/qute4.jpg','images/qute5.jpg'],
