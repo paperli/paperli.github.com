@@ -1,5 +1,12 @@
 var cases_data = [
 {
+		title:'Land Rover China',
+		article:'<p>Land Rover China was building their manufacturing in China. In MobiApps, we cooperated with Shanghai team and developed the sales channel system for customers and dealers. With our interaction model, service agents and car owners could communicate through instant messaging and managing service booking in hand.</p><p>The clever of the model solved the difficulty of integration of multiple dealer\'s management system. It also improved Land Rover China\'s control on first-hand saleforce and customer feedback.</p>',
+		bg_url:['images/landrover1.jpg','images/landrover2.jpg','images/landrover3.jpg','images/landrover4.jpg','images/landrover5.jpg','images/landrover6.jpg'],
+		img_id:'bg_landrover',
+		canvas_id:'canvas_landrover'
+	},
+{
 		title:'Qute',
 		article:'<p><a href=\'https://itunes.apple.com/vc/app/qute-qr-code-2d-barcode-scanner/id828181167?mt=8\' target=\'_blank\'>@App Store</a></p><p>Qute is not just the QR code scanner. It also brings the QR code online. People can share and read the comments about the QR code from the world.</p><p>The idea was from the scenarios from street. Image that you saw a QR code on the street. You realized it\'s shit only when you already visit through it. With Qute people can see the comments from the world about the QR code and you decide to continue or abort the visit.</p><p>Beyond that, Qute keeps the scan picture and displays it as part of result. Not only for the visual, but also for the memory. People may recall where the QR code is by the surrending of the QR code in the picture.</p>',
 		bg_url:['images/qute1.jpg','images/qute2.jpg','images/qute3.jpg','images/qute4.jpg','images/qute5.jpg'],
